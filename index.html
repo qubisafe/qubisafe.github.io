@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QubiSafe Private Limited</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #121212;
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            flex-direction: column;
+        }
+        h1 {
+            font-size: 3em;
+            margin: 0;
+        }
+        .message {
+            font-size: 1.5em;
+            margin-top: 10px;
+        }
+        .email {
+            margin-top: 20px;
+            font-size: 1.2em;
+            color: #ffcc00;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="welcome"></h1>
+    <p class="message">Our website is currently under construction. Stay tuned!</p>
+    <p class="email">Contact us: <a href="mailto:contact@kbc.com">contact@qubisafe.com</a></p>
+
+    <script>
+        const text = "Welcome to KBC Private Limited";
+        let index = 0;
+        function typeEffect() {
+            if (index < text.length) {
+                document.getElementById("welcome").textContent += text.charAt(index);
+                index++;
+                setTimeout(typeEffect, 100);
+            }
+        }
+        window.onload = typeEffect;
+    </script>
+</body>
+</html>
