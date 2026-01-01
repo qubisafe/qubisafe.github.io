@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - Our Latest Articles</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .blog-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.15);
+        }
+
+        .blog-card-image {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .blog-card-content {
+            padding: 1.5rem;
+        }
+
+        .blog-card-title {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: #2d3748;
+        }
+
+        .blog-card-meta {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            color: #718096;
+        }
+
+        .blog-card-excerpt {
+            color: #4a5568;
+            line-height: 1.6;
+        }
+
+        footer {
+            background-color: #2d3748;
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            margin-top: 4rem;
+        }
+
+        footer p {
+            margin-bottom: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .blog-grid {
+                grid-template-columns: 1fr;
+            }
+
+            header h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Our Blog</h1>
+        <p>Insights, stories, and updates from our team</p>
+    </header>
+
+    <div class="container">
+        <div class="blog-grid">
+            <!-- Blog Card 1 -->
+            <a href="blog/one.html" class="blog-card">
+                <img src="blog/one.png" alt="Blog post" class="blog-card-image">
+                <div class="blog-card-content">
+                    <h2 class="blog-card-title">QubiSafe Begins Operations: Building a Secure Future</h2>
+                    <div class="blog-card-meta">
+                        <span>By Management</span>
+                        <span>•</span>
+                        <span>Jan 1, 2026</span>
+                    </div>
+                    <p class="blog-card-excerpt">
+                       The inaugural day for operations at QubiSafe Private Limited.
+                    </p>
+                </div>
+            </a>
+
+            <!-- Blog Card 2 -->
+            <!-- <a href="blog-post-2.html" class="blog-card">
+                <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800" alt="Blog post" class="blog-card-image">
+                <div class="blog-card-content">
+                    <h2 class="blog-card-title">The Future of AI in Business</h2>
+                    <div class="blog-card-meta">
+                        <span>By Sarah Smith</span>
+                        <span>•</span>
+                        <span>Dec 28, 2025</span>
+                    </div>
+                    <p class="blog-card-excerpt">
+                        Explore how artificial intelligence is transforming modern businesses and what opportunities lie ahead in this exciting field.
+                    </p>
+                </div>
+            </a> -->
+
+            <!-- Blog Card 3 -->
+            <!-- <a href="blog-post-3.html" class="blog-card">
+                <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=800" alt="Blog post" class="blog-card-image">
+                <div class="blog-card-content">
+                    <h2 class="blog-card-title">10 Tips for Remote Work Success</h2>
+                    <div class="blog-card-meta">
+                        <span>By Mike Johnson</span>
+                        <span>•</span>
+                        <span>Dec 20, 2025</span>
+                    </div>
+                    <p class="blog-card-excerpt">
+                        Working from home doesn't have to be challenging. Discover proven strategies to stay productive and maintain work-life balance.
+                    </p>
+                </div>
+            </a> -->
+
+            <!-- Blog Card 4 -->
+            <!-- <a href="blog-post-4.html" class="blog-card">
+                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800" alt="Blog post" class="blog-card-image">
+                <div class="blog-card-content">
+                    <h2 class="blog-card-title">Understanding Digital Marketing</h2>
+                    <div class="blog-card-meta">
+                        <span>By Emily Chen</span>
+                        <span>•</span>
+                        <span>Dec 10, 2025</span>
+                    </div>
+                    <p class="blog-card-excerpt">
+                        A beginner's guide to digital marketing strategies that actually work in today's competitive online landscape.
+                    </p>
+                </div>
+            </a> -->
+
+            <!-- Blog Card 5 -->
+            <!-- <a href="blog-post-5.html" class="blog-card">
+                <img src="https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=800" alt="Blog post" class="blog-card-image">
+                <div class="blog-card-content">
+                    <h2 class="blog-card-title">Design Trends for 2026</h2>
+                    <div class="blog-card-meta">
+                        <span>By Alex Rivera</span>
+                        <span>•</span>
+                        <span>Nov 30, 2025</span>
+                    </div>
+                    <p class="blog-card-excerpt">
+                        Stay ahead of the curve with these emerging design trends that will shape the visual landscape of the coming year.
+                    </p>
+                </div>
+            </a> -->
+
+            <!-- Blog Card 6 -->
+            <!-- <a href="blog-post-6.html" class="blog-card">
+                <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?w=800" alt="Blog post" class="blog-card-image">
+                <div class="blog-card-content">
+                    <h2 class="blog-card-title">Building Effective Teams</h2>
+                    <div class="blog-card-meta">
+                        <span>By David Park</span>
+                        <span>•</span>
+                        <span>Nov 22, 2025</span>
+                    </div>
+                    <p class="blog-card-excerpt">
+                        Learn the secrets to creating high-performing teams that collaborate effectively and achieve remarkable results together.
+                    </p>
+                </div>
+            </a> -->
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Your Company Name. All rights reserved.</p>
+        
+    </footer>
+</body>
+</html>
