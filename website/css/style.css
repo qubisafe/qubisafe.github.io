@@ -847,3 +847,51 @@ html {
     box-shadow:
         0 15px 40px rgba(0, 212, 255, 0.45);
 }
+
+
+
+/* icon for social media in about page */
+
+.footer-social-links {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.social-link {
+    width: 45px;
+    height: 45px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
+
+    color: #b86cff;
+    font-size: 1.1rem;
+
+    text-decoration: none;
+
+    transition: all 0.35s ease;
+
+    backdrop-filter: blur(10px);
+}
+
+.social-link:hover {
+    transform: translateY(-4px) scale(1.08);
+
+    background: linear-gradient(
+        135deg,
+        #7b61ff,
+        #00d4ff
+    );
+
+    color: #fff;
+
+    box-shadow:
+        0 10px 30px rgba(123, 97, 255, 0.35);
+}
