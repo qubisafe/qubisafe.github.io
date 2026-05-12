@@ -1,256 +1,1040 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog - Our Latest Articles</title>
-    <link rel="icon" type="image/png" href="Media/solid_blank.png">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>QubiSafe Blog | Insights, Security & Innovation</title>
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background-color: #f8f9fa;
-        }
+  <!-- SEO -->
+  <meta
+    name="description"
+    content="Explore cybersecurity, AI, quantum-safe security, digital transformation, and technology insights from QubiSafe Private Limited."
+  />
 
-        header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 3rem 2rem;
-            text-align: center;
-        }
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="Media/solid_blank.png" />
 
-        header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
-        }
+  <!-- Fonts & Icons -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+  />
 
-        header p {
-            font-size: 1.1rem;
-            opacity: 0.9;
-        }
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 3rem 2rem;
-        }
+    :root {
+      --primary: #4f46e5;
+      --secondary: #7c3aed;
+      --dark: #0f172a;
+      --dark-light: #1e293b;
+      --text: #334155;
+      --muted: #64748b;
+      --white: #ffffff;
+      --light-bg: #f8fafc;
+      --border: #e2e8f0;
+      --success: #10b981;
+      --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      --radius: 18px;
+    }
 
-        .blog-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        Oxygen, Ubuntu, Cantarell, sans-serif;
+      background: var(--light-bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
 
-        .blog-card {
-            background: white;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            text-decoration: none;
-            color: inherit;
-            display: block;
-        }
+    a {
+      text-decoration: none;
+    }
 
-        .blog-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 15px rgba(0,0,0,0.15);
-        }
+    img {
+      max-width: 100%;
+      display: block;
+    }
 
-        .blog-card-image {
-            width: 100%;
-            height: 220px;
-            object-fit: cover;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        }
+    /* =========================
+       NAVBAR
+    ========================== */
 
-        .blog-card-content {
-            padding: 1.5rem;
-        }
+    .navbar {
+      width: 100%;
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      background: rgba(15, 23, 42, 0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
 
-        .blog-card-title {
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
-            color: #2d3748;
-        }
+    .nav-container {
+      max-width: 1300px;
+      margin: auto;
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
 
-        .blog-card-meta {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 1rem;
-            font-size: 0.9rem;
-            color: #718096;
-        }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      color: white;
+      font-weight: 700;
+      font-size: 1.2rem;
+    }
 
-        .blog-card-excerpt {
-            color: #4a5568;
-            line-height: 1.6;
-        }
+    .logo img {
+      width: 38px;
+      height: 38px;
+      object-fit: contain;
+    }
 
-        footer {
-            background-color: #2d3748;
-            color: white;
-            padding: 2rem;
-            text-align: center;
-            margin-top: 4rem;
-        }
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
 
-        footer p {
-            margin-bottom: 0.5rem;
-        }
+    .nav-links a {
+      color: rgba(255,255,255,0.85);
+      font-size: 0.95rem;
+      transition: 0.3s ease;
+    }
 
-        @media (max-width: 768px) {
-            .blog-grid {
-                grid-template-columns: 1fr;
-            }
+    .nav-links a:hover {
+      color: white;
+    }
 
-            header h1 {
-                font-size: 2rem;
-            }
-        }
-    </style>
+    .nav-btn {
+      background: linear-gradient(
+        135deg,
+        var(--primary),
+        var(--secondary)
+      );
+      color: white !important;
+      padding: 0.8rem 1.3rem;
+      border-radius: 999px;
+      font-weight: 600;
+    }
+
+    /* =========================
+       HERO
+    ========================== */
+
+    .hero {
+      background:
+        linear-gradient(rgba(15, 23, 42, 0.82), rgba(15, 23, 42, 0.82)),
+        url("https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1600&auto=format&fit=crop")
+          center/cover no-repeat;
+      color: white;
+      padding: 7rem 2rem;
+      text-align: center;
+    }
+
+    .hero-content {
+      max-width: 900px;
+      margin: auto;
+    }
+
+    .hero-tag {
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.15);
+      margin-bottom: 1.5rem;
+      font-size: 0.9rem;
+    }
+
+    .hero h1 {
+      font-size: 3.6rem;
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero p {
+      font-size: 1.15rem;
+      max-width: 750px;
+      margin: auto;
+      color: rgba(255,255,255,0.85);
+    }
+
+    .hero-buttons {
+      margin-top: 2rem;
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .hero-btn {
+      padding: 1rem 1.5rem;
+      border-radius: 999px;
+      font-weight: 600;
+      transition: 0.3s ease;
+    }
+
+    .hero-btn-primary {
+      background: linear-gradient(
+        135deg,
+        var(--primary),
+        var(--secondary)
+      );
+      color: white;
+    }
+
+    .hero-btn-secondary {
+      border: 1px solid rgba(255,255,255,0.2);
+      color: white;
+      background: rgba(255,255,255,0.05);
+    }
+
+    .hero-btn:hover {
+      transform: translateY(-3px);
+    }
+
+    /* =========================
+       MAIN
+    ========================== */
+
+    .container {
+      max-width: 1300px;
+      margin: auto;
+      padding: 4rem 2rem;
+    }
+
+    .section-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .section-title h2 {
+      font-size: 2rem;
+      color: var(--dark);
+    }
+
+    .section-title p {
+      color: var(--muted);
+    }
+
+    /* =========================
+       FEATURED POST
+    ========================== */
+
+    .featured-post {
+      background: white;
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      margin-bottom: 4rem;
+    }
+
+    .featured-post img {
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .featured-content {
+      padding: 3rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      width: fit-content;
+      padding: 0.45rem 1rem;
+      border-radius: 999px;
+      background: rgba(79, 70, 229, 0.1);
+      color: var(--primary);
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .featured-content h3 {
+      font-size: 2.2rem;
+      line-height: 1.2;
+      color: var(--dark);
+      margin-bottom: 1rem;
+    }
+
+    .featured-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 1rem;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .featured-content p {
+      margin-bottom: 1.5rem;
+      color: var(--text);
+    }
+
+    .read-btn {
+      width: fit-content;
+      padding: 0.9rem 1.4rem;
+      border-radius: 999px;
+      background: linear-gradient(
+        135deg,
+        var(--primary),
+        var(--secondary)
+      );
+      color: white;
+      font-weight: 600;
+      transition: 0.3s ease;
+    }
+
+    .read-btn:hover {
+      transform: translateY(-3px);
+    }
+
+    /* =========================
+       FILTERS
+    ========================== */
+
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .filter-btn {
+      border: 1px solid var(--border);
+      background: white;
+      color: var(--muted);
+      padding: 0.75rem 1.2rem;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: 0.3s ease;
+      font-weight: 500;
+    }
+
+    .filter-btn:hover,
+    .filter-btn.active {
+      background: linear-gradient(
+        135deg,
+        var(--primary),
+        var(--secondary)
+      );
+      color: white;
+      border-color: transparent;
+    }
+
+    /* =========================
+       BLOG GRID
+    ========================== */
+
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+      gap: 2rem;
+    }
+
+    .blog-card {
+      background: white;
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: 0.35s ease;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    .blog-card:hover {
+      transform: translateY(-8px);
+    }
+
+    .blog-card-image {
+      width: 100%;
+      height: 230px;
+      object-fit: cover;
+    }
+
+    .blog-card-content {
+      padding: 1.6rem;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .blog-category {
+      display: inline-block;
+      width: fit-content;
+      padding: 0.4rem 0.8rem;
+      border-radius: 999px;
+      background: rgba(124, 58, 237, 0.1);
+      color: var(--secondary);
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .blog-card-title {
+      font-size: 1.4rem;
+      line-height: 1.3;
+      margin-bottom: 0.8rem;
+      color: var(--dark);
+    }
+
+    .blog-card-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+
+    .blog-card-excerpt {
+      color: var(--text);
+      margin-bottom: 1.5rem;
+      flex: 1;
+    }
+
+    .blog-read-more {
+      color: var(--primary);
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    /* =========================
+       NEWSLETTER
+    ========================== */
+
+    .newsletter {
+      margin-top: 5rem;
+      background: linear-gradient(
+        135deg,
+        var(--primary),
+        var(--secondary)
+      );
+      border-radius: 28px;
+      padding: 4rem 2rem;
+      color: white;
+      text-align: center;
+    }
+
+    .newsletter h2 {
+      font-size: 2.3rem;
+      margin-bottom: 1rem;
+    }
+
+    .newsletter p {
+      max-width: 700px;
+      margin: auto;
+      color: rgba(255,255,255,0.88);
+      margin-bottom: 2rem;
+    }
+
+    .newsletter-form {
+      max-width: 650px;
+      margin: auto;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .newsletter-form input {
+      flex: 1;
+      min-width: 260px;
+      padding: 1rem 1.2rem;
+      border: none;
+      border-radius: 999px;
+      outline: none;
+      font-size: 1rem;
+    }
+
+    .newsletter-form button {
+      padding: 1rem 1.5rem;
+      border: none;
+      border-radius: 999px;
+      background: var(--dark);
+      color: white;
+      cursor: pointer;
+      font-weight: 600;
+      transition: 0.3s ease;
+    }
+
+    .newsletter-form button:hover {
+      transform: translateY(-2px);
+    }
+
+    /* =========================
+       FOOTER
+    ========================== */
+
+    footer {
+      background: var(--dark);
+      color: white;
+      margin-top: 5rem;
+    }
+
+    .footer-container {
+      max-width: 1300px;
+      margin: auto;
+      padding: 4rem 2rem 2rem;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 3rem;
+      margin-bottom: 3rem;
+    }
+
+    .footer-brand h3 {
+      font-size: 1.6rem;
+      margin-bottom: 1rem;
+    }
+
+    .footer-brand p {
+      color: rgba(255,255,255,0.7);
+    }
+
+    .footer-links h4 {
+      margin-bottom: 1rem;
+    }
+
+    .footer-links ul {
+      list-style: none;
+    }
+
+    .footer-links li {
+      margin-bottom: 0.7rem;
+    }
+
+    .footer-links a {
+      color: rgba(255,255,255,0.7);
+      transition: 0.3s ease;
+    }
+
+    .footer-links a:hover {
+      color: white;
+    }
+
+    .footer-social-links {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .social-link {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      transition: 0.3s ease;
+    }
+
+    .social-link:hover {
+      background: linear-gradient(
+        135deg,
+        var(--primary),
+        var(--secondary)
+      );
+      transform: translateY(-3px);
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding-top: 1.5rem;
+      text-align: center;
+      color: rgba(255,255,255,0.6);
+      font-size: 0.95rem;
+    }
+
+    /* =========================
+       RESPONSIVE
+    ========================== */
+
+    @media (max-width: 980px) {
+      .featured-post {
+        grid-template-columns: 1fr;
+      }
+
+      .featured-content {
+        padding: 2rem;
+      }
+
+      .hero h1 {
+        font-size: 2.8rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+
+      .hero {
+        padding: 5rem 1.5rem;
+      }
+
+      .hero h1 {
+        font-size: 2.3rem;
+      }
+
+      .container {
+        padding: 3rem 1.2rem;
+      }
+
+      .newsletter h2 {
+        font-size: 1.8rem;
+      }
+    }
+  </style>
 </head>
+
 <body>
-    <header>
-        <h1>Our Blog</h1>
-        <p>Insights, stories, and updates from our team</p>
-    </header>
 
-    <div class="container">
-        <div class="blog-grid">
-            <!-- Blog Card 1 -->
-            <a href="blog/one.html" class="blog-card">
-                <img src="blog/one.png" alt="Blog post" class="blog-card-image">
-                <div class="blog-card-content">
-                    <h2 class="blog-card-title">QubiSafe Begins Operations: Building a Secure Future</h2>
-                    <div class="blog-card-meta">
-                        <span>By Management</span>
-                        <span>•</span>
-                        <span>Jan 1, 2026</span>
-                    </div>
-                    <p class="blog-card-excerpt">
-                       The inaugural day for operations at QubiSafe Private Limited.
-                    </p>
-                </div>
-            </a>
+  <!-- =========================
+       NAVBAR
+  ========================== -->
 
-            <!-- Blog Card 2 -->
-            <!-- <a href="blog-post-2.html" class="blog-card">
-                <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800" alt="Blog post" class="blog-card-image">
-                <div class="blog-card-content">
-                    <h2 class="blog-card-title">The Future of AI in Business</h2>
-                    <div class="blog-card-meta">
-                        <span>By Sarah Smith</span>
-                        <span>•</span>
-                        <span>Dec 28, 2025</span>
-                    </div>
-                    <p class="blog-card-excerpt">
-                        Explore how artificial intelligence is transforming modern businesses and what opportunities lie ahead in this exciting field.
-                    </p>
-                </div>
-            </a> -->
+  <nav class="navbar">
+    <div class="nav-container">
 
-            <!-- Blog Card 3 -->
-            <!-- <a href="blog-post-3.html" class="blog-card">
-                <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=800" alt="Blog post" class="blog-card-image">
-                <div class="blog-card-content">
-                    <h2 class="blog-card-title">10 Tips for Remote Work Success</h2>
-                    <div class="blog-card-meta">
-                        <span>By Mike Johnson</span>
-                        <span>•</span>
-                        <span>Dec 20, 2025</span>
-                    </div>
-                    <p class="blog-card-excerpt">
-                        Working from home doesn't have to be challenging. Discover proven strategies to stay productive and maintain work-life balance.
-                    </p>
-                </div>
-            </a> -->
+      <a href="index.html" class="logo">
+        <img src="Media/solid_blank.png" alt="QubiSafe Logo" />
+        <span>QubiSafe</span>
+      </a>
 
-            <!-- Blog Card 4 -->
-            <!-- <a href="blog-post-4.html" class="blog-card">
-                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800" alt="Blog post" class="blog-card-image">
-                <div class="blog-card-content">
-                    <h2 class="blog-card-title">Understanding Digital Marketing</h2>
-                    <div class="blog-card-meta">
-                        <span>By Emily Chen</span>
-                        <span>•</span>
-                        <span>Dec 10, 2025</span>
-                    </div>
-                    <p class="blog-card-excerpt">
-                        A beginner's guide to digital marketing strategies that actually work in today's competitive online landscape.
-                    </p>
-                </div>
-            </a> -->
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="services.html">Services</a>
+        <a href="careers.html">Careers</a>
+        <a href="contact.html">Contact</a>
+        <a href="blog.html" class="nav-btn">Blog</a>
+      </div>
 
-            <!-- Blog Card 5 -->
-            <!-- <a href="blog-post-5.html" class="blog-card">
-                <img src="https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=800" alt="Blog post" class="blog-card-image">
-                <div class="blog-card-content">
-                    <h2 class="blog-card-title">Design Trends for 2026</h2>
-                    <div class="blog-card-meta">
-                        <span>By Alex Rivera</span>
-                        <span>•</span>
-                        <span>Nov 30, 2025</span>
-                    </div>
-                    <p class="blog-card-excerpt">
-                        Stay ahead of the curve with these emerging design trends that will shape the visual landscape of the coming year.
-                    </p>
-                </div>
-            </a> -->
+    </div>
+  </nav>
 
-            <!-- Blog Card 6 -->
-            <!-- <a href="blog-post-6.html" class="blog-card">
-                <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?w=800" alt="Blog post" class="blog-card-image">
-                <div class="blog-card-content">
-                    <h2 class="blog-card-title">Building Effective Teams</h2>
-                    <div class="blog-card-meta">
-                        <span>By David Park</span>
-                        <span>•</span>
-                        <span>Nov 22, 2025</span>
-                    </div>
-                    <p class="blog-card-excerpt">
-                        Learn the secrets to creating high-performing teams that collaborate effectively and achieve remarkable results together.
-                    </p>
-                </div>
-            </a> -->
-        </div>
+  <!-- =========================
+       HERO
+  ========================== -->
+
+  <section class="hero">
+    <div class="hero-content">
+
+      <div class="hero-tag">
+        <i class="fa-solid fa-shield-halved"></i>
+        Future-Ready Security & Innovation
+      </div>
+
+      <h1>
+        Insights, Innovation & Technology Perspectives
+      </h1>
+
+      <p>
+        Explore the latest updates, cybersecurity insights, AI innovations,
+        quantum-safe technology discussions, digital transformation stories,
+        and operational milestones from QubiSafe Private Limited.
+      </p>
+
+      <div class="hero-buttons">
+        <a href="#latest-posts" class="hero-btn hero-btn-primary">
+          Explore Articles
+        </a>
+
+        <a href="contact.html" class="hero-btn hero-btn-secondary">
+          Connect With Us
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- =========================
+       MAIN CONTAINER
+  ========================== -->
+
+  <div class="container">
+
+    <!-- Featured Article -->
+
+    <div class="section-title">
+      <div>
+        <h2>Featured Article</h2>
+        <p>Highlighted updates and strategic insights from QubiSafe</p>
+      </div>
     </div>
 
-    <footer>
-        <p>&copy; 2026 Your Company Name. All rights reserved.</p>
-        <div class="footer-social-links">
+    <div class="featured-post">
 
-          <a href="https://linkedin.com/company/qubisafe"
-            class="social-link"
-            target="_blank"
-            aria-label="LinkedIn">
-            <i class="fab fa-linkedin-in"></i>
-          </a>
+      <img
+        src="blog/one.png"
+        alt="QubiSafe Launch"
+      />
 
-          <a href="https://x.com/thequbisafe"
-            class="social-link"
-            target="_blank"
-            aria-label="Twitter">
-            <i class="fab fa-x-twitter"></i>
-          </a>
+      <div class="featured-content">
 
-          <a href="https://github.com/qubisafe"
-            class="social-link"
-            target="_blank"
-            aria-label="GitHub">
-            <i class="fab fa-github"></i>
-          </a>
+        <div class="badge">
+          <i class="fa-solid fa-bolt"></i>
+          Company Milestone
+        </div>
+
+        <h3>
+          QubiSafe Begins Operations: Building a Secure Future
+        </h3>
+
+        <div class="featured-meta">
+          <span>
+            <i class="fa-regular fa-user"></i>
+            By Management
+          </span>
+
+          <span>
+            <i class="fa-regular fa-calendar"></i>
+            Jan 1, 2026
+          </span>
+
+          <span>
+            <i class="fa-regular fa-clock"></i>
+            5 min read
+          </span>
+        </div>
+
+        <p>
+          QubiSafe Private Limited officially begins operations with a vision
+          to build secure, innovative, and future-ready digital solutions
+          across cybersecurity, AI, cloud, digital infrastructure,
+          quantum-safe technologies, and enterprise transformation.
+        </p>
+
+        <a href="blog/one.html" class="read-btn">
+          Read Full Article
+        </a>
+
+      </div>
+
+    </div>
+
+    <!-- Latest Posts -->
+
+    <div class="section-title" id="latest-posts">
+      <div>
+        <h2>Latest Articles</h2>
+        <p>
+          Discover updates, research, and technology insights
+        </p>
+      </div>
+    </div>
+
+    <!-- Filters -->
+
+    <div class="filters">
+      <button class="filter-btn active">All</button>
+      <button class="filter-btn">Cybersecurity</button>
+      <button class="filter-btn">Artificial Intelligence</button>
+      <button class="filter-btn">Quantum Technology</button>
+      <button class="filter-btn">Research</button>
+      <button class="filter-btn">Company Updates</button>
+    </div>
+
+    <!-- Blog Grid -->
+
+    <div class="blog-grid">
+
+      <!-- CARD 1 -->
+
+      <a href="blog/one.html" class="blog-card">
+
+        <img
+          src="blog/one.png"
+          alt="QubiSafe Begins Operations"
+          class="blog-card-image"
+        />
+
+        <div class="blog-card-content">
+
+          <span class="blog-category">
+            Company Update
+          </span>
+
+          <h3 class="blog-card-title">
+            QubiSafe Begins Operations: Building a Secure Future
+          </h3>
+
+          <div class="blog-card-meta">
+            <span>
+              <i class="fa-regular fa-user"></i>
+              Management
+            </span>
+
+            <span>
+              <i class="fa-regular fa-calendar"></i>
+              Jan 1, 2026
+            </span>
+          </div>
+
+          <p class="blog-card-excerpt">
+            The inaugural day for operations at QubiSafe Private Limited marks
+            the beginning of a future-focused journey in cybersecurity,
+            digital innovation, AI solutions, and advanced technology services.
+          </p>
+
+          <span class="blog-read-more">
+            Read Article
+            <i class="fa-solid fa-arrow-right"></i>
+          </span>
 
         </div>
-    </footer>
+
+      </a>
+
+      <!-- FUTURE ARTICLE PLACEHOLDER 1 -->
+
+      <div class="blog-card">
+
+        <img
+          src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=1200&auto=format&fit=crop"
+          alt="Cybersecurity"
+          class="blog-card-image"
+        />
+
+        <div class="blog-card-content">
+
+          <span class="blog-category">
+            Cybersecurity
+          </span>
+
+          <h3 class="blog-card-title">
+            Preparing Businesses for Quantum-Safe Security
+          </h3>
+
+          <div class="blog-card-meta">
+            <span>
+              <i class="fa-regular fa-clock"></i>
+              Coming Soon
+            </span>
+          </div>
+
+          <p class="blog-card-excerpt">
+            Understanding the next era of cybersecurity and how organizations
+            can begin preparing for quantum-resistant infrastructure and
+            cryptographic resilience.
+          </p>
+
+          <span class="blog-read-more">
+            Upcoming Article
+          </span>
+
+        </div>
+
+      </div>
+
+      <!-- FUTURE ARTICLE PLACEHOLDER 2 -->
+
+      <div class="blog-card">
+
+        <img
+          src="https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=1200&auto=format&fit=crop"
+          alt="Artificial Intelligence"
+          class="blog-card-image"
+        />
+
+        <div class="blog-card-content">
+
+          <span class="blog-category">
+            Artificial Intelligence
+          </span>
+
+          <h3 class="blog-card-title">
+            AI-Driven Security and Enterprise Automation
+          </h3>
+
+          <div class="blog-card-meta">
+            <span>
+              <i class="fa-regular fa-clock"></i>
+              Coming Soon
+            </span>
+          </div>
+
+          <p class="blog-card-excerpt">
+            Exploring how artificial intelligence is transforming security
+            operations, automation workflows, digital intelligence, and
+            business efficiency.
+          </p>
+
+          <span class="blog-read-more">
+            Upcoming Article
+          </span>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- NEWSLETTER -->
+
+    <section class="newsletter">
+
+      <h2>Stay Updated With QubiSafe</h2>
+
+      <p>
+        Subscribe to receive updates on cybersecurity, AI innovation,
+        research initiatives, digital transformation insights, and company
+        announcements directly in your inbox.
+      </p>
+
+      <form class="newsletter-form">
+
+        <input
+          type="email"
+          placeholder="Enter your email address"
+          required
+        />
+
+        <button type="submit">
+          Subscribe Now
+        </button>
+
+      </form>
+
+    </section>
+
+  </div>
+
+  <!-- =========================
+       FOOTER
+  ========================== -->
+
+  <footer>
+
+    <div class="footer-container">
+
+      <div class="footer-grid">
+
+        <div class="footer-brand">
+
+          <h3>QubiSafe</h3>
+
+          <p>
+            Future-focused cybersecurity, AI, and digital innovation company
+            delivering secure and transformative technology solutions.
+          </p>
+
+          <div class="footer-social-links">
+
+            <a
+              href="https://linkedin.com/company/qubisafe"
+              class="social-link"
+              target="_blank"
+              aria-label="LinkedIn"
+            >
+              <i class="fab fa-linkedin-in"></i>
+            </a>
+
+            <a
+              href="https://x.com/thequbisafe"
+              class="social-link"
+              target="_blank"
+              aria-label="X"
+            >
+              <i class="fab fa-x-twitter"></i>
+            </a>
+
+            <a
+              href="https://github.com/qubisafe"
+              class="social-link"
+              target="_blank"
+              aria-label="GitHub"
+            >
+              <i class="fab fa-github"></i>
+            </a>
+
+          </div>
+
+        </div>
+
+        <div class="footer-links">
+          <h4>Quick Links</h4>
+
+          <ul>
+            <li><a href="home.html">Home</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="careers.html">Careers</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-links">
+          <h4>Focus Areas</h4>
+
+          <ul>
+            <li><a href="#">Cybersecurity</a></li>
+            <li><a href="#">Artificial Intelligence</a></li>
+            <li><a href="#">Cloud Solutions</a></li>
+            <li><a href="#">Quantum Technologies</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-links">
+          <h4>Contact</h4>
+
+          <ul>
+            <li>
+              <a href="mailto:contact@qubisafe.com">
+                contact@qubisafe.com
+              </a>
+            </li>
+
+            <li>
+              <a href="#">
+                15891, Shastriagar, Tilwara Road, Jabalpur,482003
+              </a>
+            </li>
+
+            <li>
+              <a href="careers.html">
+                Join Our Team
+              </a>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <p>
+          © 2026 QubiSafe Private Limited. All rights reserved.
+        </p>
+      </div>
+
+    </div>
+
+  </footer>
+
 </body>
 </html>
