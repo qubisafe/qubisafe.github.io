@@ -703,3 +703,147 @@ html {
     font-size: 2.5rem;
   }
 }
+
+
+
+
+/* Backdrop video additional CSS */
+
+.hero {
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #050816;
+}
+
+/* Video Background */
+.hero-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    transform: translate(-50%, -50%);
+    z-index: 0;
+
+    /* Enhanced Video Look */
+    filter:
+        brightness(0.45)
+        contrast(1.2)
+        saturate(1.35);
+
+    opacity: 0.9;
+
+    animation: videoZoom 18s ease-in-out infinite alternate;
+}
+
+
+/* Overlay for readability */
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(5, 8, 22, 0.45),
+            rgba(5, 8, 22, 0.68)
+        ),
+
+        radial-gradient(
+            circle at top left,
+            rgba(123, 97, 255, 0.22),
+            transparent 35%
+        ),
+
+        radial-gradient(
+            circle at bottom right,
+            rgba(0, 212, 255, 0.18),
+            transparent 35%
+        );
+}
+
+/* Slow Premium Motion */
+@keyframes videoZoom {
+    from {
+        transform: translate(-50%, -50%) scale(1);
+    }
+
+    to {
+        transform: translate(-50%, -50%) scale(1.08);
+    }
+}
+
+/* Content */
+.hero-content {
+    position: relative;
+    z-index: 2;
+
+    text-align: center;
+    max-width: 900px;
+    padding: 0 20px;
+}
+
+/* Title */
+.hero-title {
+    font-size: clamp(2.8rem, 6vw, 5rem);
+    font-weight: 700;
+    line-height: 1.1;
+
+    color: #ca2929;
+    margin-bottom: 24px;
+
+    text-shadow: 0 0 20px rgba(238, 10, 188, 0.25);
+}
+
+/* Subtitle */
+.hero-subtitle {
+    font-size: 1.2rem;
+    line-height: 1.8;
+
+    color: rgba(255,255,255,0.82);
+
+    margin-bottom: 40px;
+}
+
+/* CTA Button */
+.cta-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 14px 34px;
+    border-radius: 999px;
+
+    background: linear-gradient(
+        135deg,
+        #007bff,
+        #00d4ff
+    );
+
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+
+    transition: all 0.35s ease;
+
+    box-shadow:
+        0 10px 30px rgba(0, 123, 255, 0.35);
+}
+
+.cta-button:hover {
+    transform: translateY(-3px) scale(1.03);
+
+    box-shadow:
+        0 15px 40px rgba(0, 212, 255, 0.45);
+}
