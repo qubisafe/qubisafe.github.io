@@ -1,50 +1,1298 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Qubisafe Internship</title>
-    <link rel="icon" type="image/png" href="Media/solid_blank.png">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-</head>
-<body>
-    <iframe id="ziframe_348422" aria-label="Application Form" frameborder="0"     style="height:500px;width:99%;border:none;" src='https://forms.zohopublic.in/qubisafeprivatelimited1/form/OnboardingForm/formperma/ODnRAej0lEgtCDY-L4IprPNhld2q98Cglz68227J8ic'>    
-</iframe>
 
-<script type="text/javascript">
-(function() {
-  try {
-    var zf_frame = document.getElementById("ziframe_348422");
-    var ifrmSrc = zf_frame.src;
-        
-        if (!((new RegExp("[?&]referrername=")).test(ifrmSrc))) {
-            var rfr = window.location.href;
-            
-            try { 
-                rfr = window.self !== window.top ? 
-                    window.top.location.href : 
-                    (/^https?:\/\/[\w.-]+\.[a-zA-Z]{2,}/i.test(rfr) ? rfr : "");
-            } catch (e) {}
-            
-            if (rfr && rfr !== "") {
-                if (rfr.length > 1800) {
-                    var queryIndex = rfr.indexOf('?');
-                    if (queryIndex > -1) {
-                        rfr = rfr.substring(0, queryIndex);
-                    }
-                    if (rfr.length > 1800) {
-                        rfr = rfr.substring(0, 1800);
-                    }
-                }
-                ifrmSrc += ((ifrmSrc.indexOf('?') > 0) ? '&' : '?') + 'referrername=' + encodeURIComponent(rfr);
-            }
-        }
-        if (zf_frame.src !== ifrmSrc) {
-            zf_frame.src = ifrmSrc;
-        }
-  } catch (e) {}
-})();
-</script>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>QubiSafe Careers | Professional Application Portal</title>
+
+  <link rel="icon" type="image/png" href="Media/solid_blank.png" />
+
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    :root{
+
+      --primary:#4f46e5;
+      --secondary:#7c3aed;
+      --dark:#0f172a;
+      --dark-light:#1e293b;
+      --text:#334155;
+      --muted:#64748b;
+      --white:#ffffff;
+      --light:#f8fafc;
+      --border:#e2e8f0;
+      --success:#10b981;
+      --danger:#ef4444;
+
+      --shadow:
+      0 15px 40px rgba(0,0,0,0.08);
+
+      --radius:20px;
+
+    }
+
+    body{
+
+      font-family:
+      -apple-system,
+      BlinkMacSystemFont,
+      "Segoe UI",
+      Roboto,
+      Oxygen,
+      Ubuntu,
+      Cantarell,
+      sans-serif;
+
+      background:var(--light);
+      color:var(--text);
+      line-height:1.6;
+
+    }
+
+    a{
+      text-decoration:none;
+    }
+
+    img{
+      max-width:100%;
+      display:block;
+    }
+
+    /* ====================================
+       HERO
+    ==================================== */
+
+    .hero{
+
+      background:
+      linear-gradient(
+      rgba(15,23,42,0.88),
+      rgba(15,23,42,0.88)
+      ),
+      url("https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=1600&auto=format&fit=crop")
+      center/cover no-repeat;
+
+      color:white;
+      padding:6rem 2rem;
+      text-align:center;
+
+    }
+
+    .hero-content{
+
+      max-width:950px;
+      margin:auto;
+
+    }
+
+    .hero-tag{
+
+      display:inline-flex;
+      align-items:center;
+      gap:0.6rem;
+
+      padding:0.65rem 1.2rem;
+
+      border-radius:999px;
+
+      background:
+      rgba(255,255,255,0.08);
+
+      border:
+      1px solid rgba(255,255,255,0.1);
+
+      margin-bottom:1.5rem;
+
+      font-size:0.92rem;
+
+    }
+
+    .hero h1{
+
+      font-size:3.5rem;
+      line-height:1.1;
+      margin-bottom:1.4rem;
+
+    }
+
+    .hero p{
+
+      max-width:780px;
+      margin:auto;
+      color:rgba(255,255,255,0.82);
+      font-size:1.08rem;
+
+    }
+
+    /* ====================================
+       CONTAINER
+    ==================================== */
+
+    .container{
+
+      max-width:1350px;
+      margin:auto;
+      padding:4rem 2rem;
+
+    }
+
+    .layout{
+
+      display:grid;
+      grid-template-columns:340px 1fr;
+      gap:2rem;
+      align-items:start;
+
+    }
+
+    /* ====================================
+       SIDEBAR
+    ==================================== */
+
+    .sidebar{
+
+      background:white;
+      border-radius:var(--radius);
+      padding:2rem;
+      box-shadow:var(--shadow);
+
+      position:sticky;
+      top:20px;
+
+    }
+
+    .sidebar h3{
+
+      font-size:1.5rem;
+      color:var(--dark);
+      margin-bottom:1rem;
+
+    }
+
+    .sidebar p{
+
+      color:var(--muted);
+      margin-bottom:1.5rem;
+
+    }
+
+    .sidebar-list{
+
+      list-style:none;
+
+    }
+
+    .sidebar-list li{
+
+      display:flex;
+      gap:1rem;
+      margin-bottom:1.5rem;
+      align-items:flex-start;
+
+    }
+
+    .icon-box{
+
+      width:48px;
+      height:48px;
+
+      border-radius:14px;
+
+      background:
+      rgba(79,70,229,0.1);
+
+      color:var(--primary);
+
+      display:flex;
+      align-items:center;
+      justify-content:center;
+
+      flex-shrink:0;
+
+    }
+
+    .sidebar-content h4{
+
+      color:var(--dark);
+      margin-bottom:0.2rem;
+
+    }
+
+    .sidebar-content p{
+
+      font-size:0.92rem;
+      margin:0;
+
+    }
+
+    /* ====================================
+       FORM CARD
+    ==================================== */
+
+    .form-card{
+
+      background:white;
+      border-radius:var(--radius);
+      overflow:hidden;
+      box-shadow:var(--shadow);
+
+    }
+
+    .form-header{
+
+      background:
+      linear-gradient(
+      135deg,
+      var(--primary),
+      var(--secondary)
+      );
+
+      color:white;
+      padding:2.5rem;
+
+    }
+
+    .form-header h2{
+
+      font-size:2rem;
+      margin-bottom:0.7rem;
+
+    }
+
+    .form-header p{
+
+      color:rgba(255,255,255,0.88);
+
+    }
+
+    form{
+
+      padding:2.5rem;
+
+    }
+
+    .form-section{
+
+      margin-bottom:3rem;
+
+    }
+
+    .section-title{
+
+      display:flex;
+      align-items:center;
+      gap:0.8rem;
+
+      margin-bottom:1.6rem;
+
+    }
+
+    .section-title i{
+
+      width:44px;
+      height:44px;
+
+      border-radius:12px;
+
+      background:
+      rgba(79,70,229,0.1);
+
+      color:var(--primary);
+
+      display:flex;
+      align-items:center;
+      justify-content:center;
+
+    }
+
+    .section-title h3{
+
+      color:var(--dark);
+      font-size:1.3rem;
+
+    }
+
+    .form-grid{
+
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:1.5rem;
+
+    }
+
+    .form-group{
+
+      display:flex;
+      flex-direction:column;
+
+    }
+
+    .full-width{
+
+      grid-column:1/-1;
+
+    }
+
+    label{
+
+      margin-bottom:0.55rem;
+      font-weight:600;
+      color:var(--dark);
+
+    }
+
+    .required{
+
+      color:var(--danger);
+
+    }
+
+    input,
+    select,
+    textarea{
+
+      padding:1rem 1rem;
+
+      border:
+      1px solid var(--border);
+
+      border-radius:14px;
+
+      font-size:0.96rem;
+
+      outline:none;
+
+      transition:0.3s ease;
+
+      background:white;
+
+    }
+
+    textarea{
+
+      resize:vertical;
+      min-height:140px;
+
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus{
+
+      border-color:var(--primary);
+
+      box-shadow:
+      0 0 0 4px rgba(79,70,229,0.08);
+
+    }
+
+    .upload-box{
+
+      border:2px dashed var(--border);
+      border-radius:18px;
+      padding:2rem;
+      text-align:center;
+      background:#fafafa;
+
+      transition:0.3s ease;
+
+    }
+
+    .upload-box:hover{
+
+      border-color:var(--primary);
+
+    }
+
+    .upload-box i{
+
+      font-size:2rem;
+      color:var(--primary);
+      margin-bottom:1rem;
+
+    }
+
+    .upload-box p{
+
+      color:var(--muted);
+      margin-bottom:1rem;
+
+    }
+
+    .upload-box input{
+
+      border:none;
+      background:transparent;
+      padding:0;
+
+    }
+
+    .checkbox-group{
+
+      display:flex;
+      gap:1rem;
+      align-items:flex-start;
+
+      padding:1.2rem;
+
+      border:
+      1px solid var(--border);
+
+      border-radius:16px;
+
+      background:#fafafa;
+
+    }
+
+    .checkbox-group input{
+
+      margin-top:0.3rem;
+      transform:scale(1.15);
+
+    }
+
+    .checkbox-group label{
+
+      margin:0;
+      font-weight:500;
+
+    }
+
+    .submit-area{
+
+      margin-top:3rem;
+      border-top:1px solid var(--border);
+      padding-top:2rem;
+
+    }
+
+    .submit-btn{
+
+      width:100%;
+      border:none;
+      cursor:pointer;
+
+      padding:1.2rem;
+
+      border-radius:16px;
+
+      background:
+      linear-gradient(
+      135deg,
+      var(--primary),
+      var(--secondary)
+      );
+
+      color:white;
+      font-size:1rem;
+      font-weight:700;
+
+      transition:0.3s ease;
+
+    }
+
+    .submit-btn:hover{
+
+      transform:translateY(-3px);
+
+    }
+
+    /* ====================================
+       FALLBACK SECTION
+    ==================================== */
+
+    .fallback-container{
+
+      display:none;
+
+      background:white;
+
+      border-radius:var(--radius);
+
+      overflow:hidden;
+
+      box-shadow:var(--shadow);
+
+      margin-top:3rem;
+
+    }
+
+    .fallback-header{
+
+      padding:1.5rem 2rem;
+
+      background:
+      linear-gradient(
+      135deg,
+      #dc2626,
+      #7c2d12
+      );
+
+      color:white;
+
+    }
+
+    .fallback-header h3{
+
+      margin-bottom:0.5rem;
+
+    }
+
+    .fallback-header p{
+
+      color:rgba(255,255,255,0.85);
+
+    }
+
+    .fallback-container iframe{
+
+      width:100%;
+      height:850px;
+      border:none;
+
+    }
+
+    /* ====================================
+       FOOTER
+    ==================================== */
+
+    footer{
+
+      text-align:center;
+      padding:2rem;
+      color:var(--muted);
+      font-size:0.95rem;
+
+    }
+
+    /* ====================================
+       RESPONSIVE
+    ==================================== */
+
+    @media(max-width:1024px){
+
+      .layout{
+
+        grid-template-columns:1fr;
+
+      }
+
+      .sidebar{
+
+        position:relative;
+        top:0;
+
+      }
+
+    }
+
+    @media(max-width:768px){
+
+      .hero h1{
+
+        font-size:2.4rem;
+
+      }
+
+      .container{
+
+        padding:2rem 1rem;
+
+      }
+
+      .form-grid{
+
+        grid-template-columns:1fr;
+
+      }
+
+      form{
+
+        padding:1.5rem;
+
+      }
+
+      .form-header{
+
+        padding:2rem 1.5rem;
+
+      }
+
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <section class="hero">
+
+    <div class="hero-content">
+
+      <div class="hero-tag">
+
+        <i class="fa-solid fa-briefcase"></i>
+        Careers at QubiSafe
+
+      </div>
+
+      <h1>
+        Professional Career Application Portal
+      </h1>
+
+      <p>
+        Apply for technology, cybersecurity, AI, cloud, research,
+        legal, and innovation-driven opportunities at QubiSafe
+        Private Limited.
+      </p>
+
+    </div>
+
+  </section>
+
+  <div class="container">
+
+    <div class="layout">
+
+      <aside class="sidebar">
+
+        <h3>Hiring Information</h3>
+
+        <p>
+          Complete the application form professionally and upload
+          your latest Resume/CV in PDF format.
+        </p>
+
+        <ul class="sidebar-list">
+
+          <li>
+
+            <div class="icon-box">
+              <i class="fa-solid fa-file-pdf"></i>
+            </div>
+
+            <div class="sidebar-content">
+              <h4>Resume Upload</h4>
+              <p>
+                Upload your latest Resume/CV in PDF format only.
+              </p>
+            </div>
+
+          </li>
+
+          <li>
+
+            <div class="icon-box">
+              <i class="fa-solid fa-user-check"></i>
+            </div>
+
+            <div class="sidebar-content">
+              <h4>Professional Review</h4>
+              <p>
+                Applications are reviewed based on skills,
+                experience, and project relevance.
+              </p>
+            </div>
+
+          </li>
+
+          <li>
+
+            <div class="icon-box">
+              <i class="fa-solid fa-laptop-code"></i>
+            </div>
+
+            <div class="sidebar-content">
+              <h4>Technology Focus</h4>
+              <p>
+                Opportunities across cybersecurity, AI,
+                cloud, development, legal-tech, and R&D.
+              </p>
+            </div>
+
+          </li>
+
+          <li>
+
+            <div class="icon-box">
+              <i class="fa-solid fa-shield-halved"></i>
+            </div>
+
+            <div class="sidebar-content">
+              <h4>Data Privacy</h4>
+              <p>
+                Candidate information is handled
+                securely and professionally.
+              </p>
+            </div>
+
+          </li>
+
+        </ul>
+
+      </aside>
+
+      <div class="form-card" id="mainFormContainer">
+
+        <div class="form-header">
+
+          <h2>
+            Candidate Application Form
+          </h2>
+
+          <p>
+            Complete all required details carefully before submission.
+          </p>
+
+        </div>
+
+        <form id="careerForm">
+
+          <div class="form-section">
+
+            <div class="section-title">
+
+              <i class="fa-solid fa-user"></i>
+
+              <h3>
+                Personal Information
+              </h3>
+
+            </div>
+
+            <div class="form-grid">
+
+              <div class="form-group">
+
+                <label>
+                  Full Name
+                  <span class="required">*</span>
+                </label>
+
+                <input
+                  type="text"
+                  name="full_name"
+                  id="full_name"
+                  required
+                />
+
+              </div>
+
+              <div class="form-group">
+
+                <label>
+                  Email Address
+                  <span class="required">*</span>
+                </label>
+
+                <input
+                  type="email"
+                  name="email"
+                  id="email"
+                  required
+                />
+
+              </div>
+
+              <div class="form-group">
+
+                <label>
+                  Mobile Number
+                  <span class="required">*</span>
+                </label>
+
+                <input
+                  type="tel"
+                  name="phone"
+                  id="phone"
+                  required
+                />
+
+              </div>
+
+              <div class="form-group">
+
+                <label>
+                  Current City
+                </label>
+
+                <input
+                  type="text"
+                  name="city"
+                  id="city"
+                />
+
+              </div>
+
+              <div class="form-group full-width">
+
+                <label>
+                  LinkedIn / Portfolio / GitHub
+                </label>
+
+                <input
+                  type="url"
+                  name="portfolio"
+                  id="portfolio"
+                  placeholder="https://"
+                />
+
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class="form-section">
+
+            <div class="section-title">
+
+              <i class="fa-solid fa-briefcase"></i>
+
+              <h3>
+                Position Details
+              </h3>
+
+            </div>
+
+            <div class="form-grid">
+
+              <div class="form-group">
+
+                <label>
+                  Position Applying For
+                  <span class="required">*</span>
+                </label>
+
+                <select
+                  name="position"
+                  id="position"
+                  required
+                >
+
+                  <option value="">
+                    Select Position
+                  </option>
+
+                  <option>Full Stack Developer</option>
+                  <option>Frontend Developer</option>
+                  <option>Backend Developer</option>
+                  <option>Cybersecurity Analyst</option>
+                  <option>SOC Analyst</option>
+                  <option>AI / ML Engineer</option>
+                  <option>Cloud Engineer</option>
+                  <option>DevOps Engineer</option>
+                  <option>UI / UX Designer</option>
+                  <option>Legal & Compliance</option>
+                  <option>Research Associate</option>
+                  <option>Internship Program</option>
+                  <option>Other Relevant Position</option>
+
+                </select>
+
+              </div>
+
+              <div class="form-group">
+
+                <label>
+                  Employment Type
+                </label>
+
+                <select name="employment_type" id="employment_type">
+
+                  <option value="">
+                    Select Type
+                  </option>
+
+                  <option>Full Time</option>
+                  <option>Internship</option>
+                  <option>Part Time</option>
+                  <option>Remote</option>
+                  <option>Contract</option>
+
+                </select>
+
+              </div>
+
+              <div class="form-group">
+
+                <label>
+                  Experience Level
+                </label>
+
+                <select name="experience" id="experience">
+
+                  <option value="">
+                    Select Experience
+                  </option>
+
+                  <option>Fresher</option>
+                  <option>0 - 1 Year</option>
+                  <option>1 - 3 Years</option>
+                  <option>3 - 5 Years</option>
+                  <option>5+ Years</option>
+
+                </select>
+
+              </div>
+
+              <div class="form-group">
+
+                <label>
+                  Expected CTC / Stipend
+                </label>
+
+                <input
+                  type="text"
+                  name="expected_ctc"
+                  id="expected_ctc"
+                />
+
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class="form-section">
+
+            <div class="section-title">
+
+              <i class="fa-solid fa-graduation-cap"></i>
+
+              <h3>
+                Education & Skills
+              </h3>
+
+            </div>
+
+            <div class="form-grid">
+
+              <div class="form-group">
+
+                <label>
+                  Highest Qualification
+                </label>
+
+                <input
+                  type="text"
+                  name="qualification"
+                  id="qualification"
+                />
+
+              </div>
+
+              <div class="form-group">
+
+                <label>
+                  University / Institution
+                </label>
+
+                <input
+                  type="text"
+                  name="institution"
+                  id="institution"
+                />
+
+              </div>
+
+              <div class="form-group full-width">
+
+                <label>
+                  Skills / Certifications / Tools
+                </label>
+
+                <textarea
+                  name="skills"
+                  id="skills"
+                  placeholder="Mention technologies, frameworks, certifications, cloud platforms, legal expertise, AI/ML tools, cybersecurity labs, etc."
+                ></textarea>
+
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class="form-section">
+
+            <div class="section-title">
+
+              <i class="fa-solid fa-diagram-project"></i>
+
+              <h3>
+                Experience & Projects
+              </h3>
+
+            </div>
+
+            <div class="form-grid">
+
+              <div class="form-group full-width">
+
+                <label>
+                  Professional Experience
+                </label>
+
+                <textarea
+                  name="experience_details"
+                  id="experience_details"
+                  placeholder="Describe previous experience, internships, achievements, or project exposure."
+                ></textarea>
+
+              </div>
+
+              <div class="form-group full-width">
+
+                <label>
+                  Key Projects / Research Work
+                </label>
+
+                <textarea
+                  name="projects"
+                  id="projects"
+                  placeholder="Mention projects, GitHub repositories, publications, cybersecurity labs, research papers, etc."
+                ></textarea>
+
+              </div>
+
+              <div class="form-group full-width">
+
+                <label>
+                  Why Would You Like To Join QubiSafe?
+                </label>
+
+                <textarea
+                  name="motivation"
+                  id="motivation"
+                  placeholder="Describe your interests, goals, and motivation."
+                ></textarea>
+
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class="form-section">
+
+            <div class="section-title">
+
+              <i class="fa-solid fa-file-arrow-up"></i>
+
+              <h3>
+                Resume / CV Upload
+              </h3>
+
+            </div>
+
+            <div class="upload-box">
+
+              <i class="fa-solid fa-cloud-arrow-up"></i>
+
+              <p>
+                Upload Resume/CV in PDF format only
+              </p>
+
+              <input
+                type="file"
+                id="resume_pdf"
+                accept=".pdf"
+                required
+              />
+
+            </div>
+
+          </div>
+
+          <div class="form-section">
+
+            <div class="section-title">
+
+              <i class="fa-solid fa-circle-check"></i>
+
+              <h3>
+                Declaration
+              </h3>
+
+            </div>
+
+            <div class="checkbox-group">
+
+              <input
+                type="checkbox"
+                id="declaration"
+                required
+              />
+
+              <label for="declaration">
+                I hereby declare that all information provided in this
+                application form is accurate and complete to the best
+                of my knowledge.
+              </label>
+
+            </div>
+
+          </div>
+
+          <div class="submit-area">
+
+            <button
+              type="submit"
+              id="submitBtn"
+              class="submit-btn"
+            >
+              Submit Application
+            </button>
+
+          </div>
+
+        </form>
+
+      </div>
+
+    </div>
+
+    <div
+      class="fallback-container"
+      id="fallbackForm"
+    >
+
+      <div class="fallback-header">
+
+        <h3>
+          Alternate Application Portal
+        </h3>
+
+        <p>
+          If the primary application form is unavailable,
+          please use the alternate secure application portal below.
+        </p>
+
+      </div>
+
+      <iframe
+        src="https://forms.zohopublic.in/YOUR_ZOHO_FORM_LINK"
+        loading="lazy"
+      ></iframe>
+
+    </div>
+
+  </div>
+
+  <footer>
+    © 2026 QubiSafe Private Limited. All Rights Reserved.
+  </footer>
+
+  <script>
+    // 1. PLACE YOUR GOOGLE APPS SCRIPT WEB APP EXECUTION URL HERE
+    const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwnVdIRuQlRr3sp2s18c6ZzU77lJsn5FEBydKN9P-e_loPgQbJaI8SdQRaDXSCiY8xB/exec'; 
+
+    document.getElementById('careerForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      // Simple Guard: trigger fallback layout directly if endpoint is missing
+      if (APPS_SCRIPT_URL === 'YOUR_WEB_APP_URL_HERE' || APPS_SCRIPT_URL === '') {
+        triggerFallback("Primary backend endpoint missing. Redirecting to backup portal...");
+        return;
+      }
+
+      const submitBtn = document.getElementById('submitBtn');
+      const originalText = submitBtn.innerText;
+      
+      // Update UI Status indicators
+      submitBtn.innerText = "Uploading Application & Resume...";
+      submitBtn.disabled = true;
+
+      const fileInput = document.getElementById('resume_pdf');
+      const file = fileInput.files[0];
+
+      // Build out regular inputs object mapped directly
+      const payload = {
+        full_name: document.getElementById('full_name').value,
+        email: document.getElementById('email').value,
+        phone: document.getElementById('phone').value,
+        city: document.getElementById('city').value,
+        portfolio: document.getElementById('portfolio').value,
+        position: document.getElementById('position').value,
+        employment_type: document.getElementById('employment_type').value,
+        experience: document.getElementById('experience').value,
+        expected_ctc: document.getElementById('expected_ctc').value,
+        qualification: document.getElementById('qualification').value,
+        institution: document.getElementById('institution').value,
+        skills: document.getElementById('skills').value,
+        experience_details: document.getElementById('experience_details').value,
+        projects: document.getElementById('projects').value,
+        motivation: document.getElementById('motivation').value,
+        fileData: null,
+        fileName: null
+      };
+
+      // Wrap sending process inside a reusable processing block
+      const sendData = () => {
+        fetch(APPS_SCRIPT_URL, {
+          method: 'POST',
+          mode: 'no-cors', // Bypasses browser intercept blocks on cross-domain tracking redirects
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(payload)
+        })
+        .then(() => {
+          alert("Application submitted successfully! Our talent acquisition team will review your CV.");
+          document.getElementById('careerForm').reset();
+          submitBtn.innerText = originalText;
+          submitBtn.disabled = false;
+        })
+        .catch(err => {
+          console.error("Transmission breakdown:", err);
+          triggerFallback("Network error intercepted during form relay. Opening alternate portal...");
+        });
+      };
+
+      // File ingestion parsing engine via Base64 binary reader
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(event) {
+          payload.fileData = event.target.result;
+          payload.fileName = file.name;
+          sendData();
+        };
+        reader.onerror = function() {
+          alert("Failed to parse the selected file string binary metadata.");
+          submitBtn.innerText = originalText;
+          submitBtn.disabled = false;
+        };
+        reader.readAsDataURL(file);
+      } else {
+        sendData();
+      }
+    });
+
+    // Integrated helper routing structure to pop up the Zoho module smoothly 
+    function triggerFallback(alertMessage) {
+      alert(alertMessage);
+      const fallback = document.getElementById("fallbackForm");
+      if(fallback) {
+        fallback.style.display = "block";
+        fallback.scrollIntoView({ behavior: "smooth" });
+      }
+      const submitBtn = document.getElementById('submitBtn');
+      if(submitBtn) {
+        submitBtn.innerText = "Submitted via Backup";
+      }
+    }
+  </script>
 
 </body>
 </html>
