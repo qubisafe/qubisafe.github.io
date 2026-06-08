@@ -778,6 +778,8 @@
                 <label>
                   Full Name (As per vaild ID)
                   <span class="required">*</span>
+                  
+
                 </label>
 
                 <input
@@ -785,6 +787,8 @@
                   name="full_name"
                   id="full_name"
                   required
+                  placeholder="John Doe"
+
                 />
 
               </div>
@@ -801,6 +805,7 @@
                   name="email"
                   id="email"
                   required
+                  placeholder="example@domain.com"
                 />
 
               </div>
@@ -817,6 +822,7 @@
                   name="phone"
                   id="phone"
                   required
+                  placeholder="9876543210"
                 />
 
               </div>
@@ -1119,7 +1125,7 @@
               <div class="form-group">
 
                 <label>
-                  Expected CTC / Stipend
+                  Expected CTC / Stipend (in INR)
                   <span class="required">*</span>
                 </label>
 
@@ -1151,18 +1157,25 @@
 
               <div class="form-group">
 
-                <label>
-                  Highest Qualification
-                  <span class="required">*</span>
-                </label>
+             <label>
+                Highest Qualification
+                <span class="required">*</span>
+              </label>
 
-                <input
-                  type="text"
-                  name="qualification"
-                  id="qualification"
-                />
+              <select name="qualification" id="qualification" required>
 
-              </div>
+                <option value="">Select Qualification</option>
+
+                <option>Currently Pursuing Graduation</option>
+                <option>Graduate</option>
+                <option>Currently Pursuing Postgraduation</option>
+                <option>Postgraduate</option>
+                <option>Doctorate (Ph.D.)</option>
+                <option>Professional Certification</option>
+                <option>Other</option>
+
+              </select>
+               </div>
 
               <div class="form-group">
 
@@ -1269,7 +1282,7 @@
               <i class="fa-solid fa-file-arrow-up"></i>
 
               <h3>
-                Resume / CV Upload
+                CV Upload
               </h3>
 
             </div>
@@ -1279,7 +1292,7 @@
               <i class="fa-solid fa-cloud-arrow-up"></i>
 
               <p>
-                Upload Resume/CV in PDF format only (Size less than 2MB only)
+                Upload CV in PDF format only (Size less than 1MB only)
               </p>
 
               <input
