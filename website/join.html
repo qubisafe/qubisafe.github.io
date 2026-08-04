@@ -699,8 +699,8 @@
             <div class="sidebar-content">
               <h4>Application Review Parameters</h4>
               <p>
-                Applications are reviewed based on skills,
-                experience, and project relevance.
+                Applications are reviewed based on educational background, skills,
+                experience, and its relevance for the selected project.
               </p>
             </div>
 
@@ -753,7 +753,7 @@
           <p>
             Complete all required details carefully before submission.
           </p>
-          <p> Note: The application will be reviewed and the status will be updated within 48 hours of recieving the application.</p>
+          <p> Note: The application will be reviewed and the status will be updated to the mentioned email address within 48 hours of recieving the application.</p>
 
         </div>
 
@@ -813,7 +813,7 @@
               <div class="form-group">
 
                 <label>
-                  Mobile Number
+                  Mobile Number (Whatsapp)
                   <span class="required">*</span>
                 </label>
 
@@ -828,19 +828,26 @@
               </div>
 
               <div class="form-group">
+              <label for="state">
+                State
+                <span class="required">*</span>
+              </label>
 
-                <label>
-                  Current City
-                  <span class="required">*</span>
-                </label>
+              <select name="state" id="state" required>
+                <option value="">Select State</option>
+              </select>
+            </div>
 
-                <input
-                  type="text"
-                  name="city"
-                  id="city"
-                />
+            <div class="form-group">
+              <label for="city">
+                District / City
+                <span class="required">*</span>
+              </label>
 
-              </div>
+              <select name="city" id="city" required disabled>
+                <option value="">Select District / City</option>
+              </select>
+            </div>
 
               <div class="form-group full-width">
 
@@ -910,7 +917,7 @@
                   <option>Legal & Compliance Intern</option>
                   <option>Research Associate</option>
                   <option> Patent Analyst</option>
-                  <option> </option>
+                  <!-- <option> </option> -->
                   <!-- <option>Internship Program</option> -->
                   <!-- <option>Other Relevant Position</option> -->
 
@@ -921,21 +928,21 @@
               <div class="form-group">
 
                 <label>
-                  Prefered Future Employment Type
+                  Duration of Engagement
                   <span class="required">*</span>
                 </label>
 
                 <select name="employment_type" id="employment_type">
 
                   <option value="">
-                    Select Type
+                    Select Duration
                   </option>
 
-                  <option>Full Time</option>
-                  <option>Internship(Remote)</option>
-                  <option>Part Time</option>
-                  <option>Hybrid</option>
-                  <option>Contractual</option>
+                  <option>1-3 Months</option>
+                  <option>3-6 Months</option>
+                  <option>6 Months - 1 Year</option>
+                  <option>1-2 Year</option>
+                  <option>2+ Years</option>
 
                 </select>
 
@@ -945,10 +952,10 @@
 
               <div class="form-group">
 
-              <label> Project Interested in <br>
-                <i style="font-size: 12px;"> 
+              <label> Project Interested in
+                <!-- <i style="font-size: 12px;"> 
                   Select Additional Domain of Interest Except Applied Position Domain 
-                </i> 
+                </i>  -->
                 <span class="required">*</span> 
               </label>
 
@@ -958,147 +965,158 @@
                   required
                 >
 
-                  <!-- <option value="">
-                  
-                  </option> -->
+                
+                  <!-- <option value="">Select Domain</option>
 
-                  <option value="">Select Domain</option>
+                  Software Development
+                  <option>Full Stack Development</option>
+                  <option>Frontend Development</option>
+                  <option>Backend Development</option>
+                  <option>Web Development</option>
+                  <option>Mobile Application Development</option>
+                  <option>Software Engineering</option>
+                  <option>API Development & Integration</option>
+                  <option>DevOps Engineering</option>
+                  <option>Site Reliability Engineering (SRE)</option>
 
-<!-- Software Development -->
-<!-- <option>Full Stack Development</option> -->
-<!-- <option>Frontend Development</option> -->
-<!-- <option>Backend Development</option> -->
-<option>Web Development</option>
-<option>Mobile Application Development</option>
-<option>Software Engineering</option>
-<option>API Development & Integration</option>
-<option>DevOps Engineering</option>
-<!-- <option>Site Reliability Engineering (SRE)</option> -->
+                  Cybersecurity
+                  <option>Cybersecurity</option>
+                  <option>Security Operations Center (SOC)</option>
+                  <option>Digital Forensics</option>
+                  <option>Incident Response</option>
+                  <option>Threat Intelligence</option>
+                  <option>Penetration Testing</option>
+                  <option>Vulnerability Assessment</option>
+                  <option>Cloud Security</option>
+                  <option>Application Security</option>
+                  <option>Network Security</option>
+                  <option>Governance Risk & Compliance (GRC)</option>
+                  <option>Information Security Management</option>
+                  <option>Cyber Law & Compliance</option>
+                  <option> Automotive Security</option>
 
-<!-- Cybersecurity -->
-<option>Cybersecurity</option>
-<option>Security Operations Center (SOC)</option>
-<option>Digital Forensics</option>
-<option>Incident Response</option>
-<option>Threat Intelligence</option>
-<option>Penetration Testing</option>
-<option>Vulnerability Assessment</option>
-<option>Cloud Security</option>
-<option>Application Security</option>
-<option>Network Security</option>
-<option>Governance Risk & Compliance (GRC)</option>
-<option>Information Security Management</option>
-<option>Cyber Law & Compliance</option>
-<option> Automotive Security</option>
+                  Artificial Intelligence
+                  <option>Artificial Intelligence (AI)</option>
+                  <option>Machine Learning (ML)</option>
+                  <option>Deep Learning</option>
+                  <option>Generative AI</option>
+                  <option>Natural Language Processing (NLP)</option>
+                  <option>Computer Vision</option>
+                  <option>AI Research</option>
+                  <option>AI Security</option>
+                  <option>Data Science</option>
+                  <option>Data Analytics</option>
 
-<!-- Artificial Intelligence -->
-<option>Artificial Intelligence (AI)</option>
-<option>Machine Learning (ML)</option>
-<option>Deep Learning</option>
-<option>Generative AI</option>
-<option>Natural Language Processing (NLP)</option>
-<option>Computer Vision</option>
-<option>AI Research</option>
-<option>AI Security</option>
-<option>Data Science</option>
-<!-- <option>Data Analytics</option> -->
+                  Cloud & Infrastructure
+                  <option>Cloud Computing</option>
+                  <option>AWS</option>
+                  <option>Microsoft Azure</option>
+                  <option>Google Cloud Platform (GCP)</option>
+                  <option>Cloud Architecture</option>
+                  <option>Infrastructure Engineering</option>
+                  <option>System Administration</option>
+                  <option>Virtualization Technologies</option>
 
-<!-- Cloud & Infrastructure -->
-<option>Cloud Computing</option>
-<!-- <option>AWS</option> -->
-<!-- <option>Microsoft Azure</option> -->
-<!-- <option>Google Cloud Platform (GCP)</option> -->
-<option>Cloud Architecture</option>
-<option>Infrastructure Engineering</option>
-<option>System Administration</option>
-<option>Virtualization Technologies</option>
+                  Research & Emerging Tech
+                  <option>Research & Development (R&D)</option>
+                  <option>Quantum Computing</option>
+                  <option>Quantum Cryptography</option>
+                  <option>Post-Quantum Security</option>
+                  <option>Blockchain Technology</option>
+                  <option>Web3 Technologies</option>
+                  <option>Distributed Ledger Technologies</option>
+                  <option>Internet of Things (IoT)</option>
+                  <option>Edge Computing</option>
 
-<!-- Research & Emerging Tech -->
-<option>Research & Development (R&D)</option>
-<option>Quantum Computing</option>
-<option>Quantum Cryptography</option>
-<option>Post-Quantum Security</option>
-<option>Blockchain Technology</option>
-<option>Web3 Technologies</option>
-<option>Distributed Ledger Technologies</option>
-<option>Internet of Things (IoT)</option>
-<option>Edge Computing</option>
+                  Design
+                  <option>UI/UX Design</option>
+                  <option>UX Design</option>
+                  <option>Product Design</option>
+                  <option>Graphic Design</option>
+                  <option>Motion Graphics</option>
+                  <option>Brand Design</option>
 
-<!-- Design -->
-<option>UI/UX Design</option>
-<!-- <option>UX Design</option> -->
-<option>Product Design</option>
-<option>Graphic Design</option>
-<option>Motion Graphics</option>
-<!-- <option>Brand Design</option> -->
+                  Business & Operations
+                  <option>Business Development</option>
+                  <option>Sales</option>
+                  <option>Marketing</option>
+                  <option>Digital Marketing</option>
+                  <option>Content Writing</option>
+                  <option>Technical Writing</option>
+                  <option>Public Relations</option>
+                  <option>Customer Success</option>
+                  <option>Project Management</option>
+                  <option>Product Management</option>
+                  <option>Operations Management</option>
 
-<!-- Business & Operations -->
-<option>Business Development</option>
-<option>Sales</option>
-<!-- <option>Marketing</option> -->
-<option>Digital Marketing</option>
-<option>Content Writing</option>
-<!-- <option>Technical Writing</option> -->
-<option>Public Relations</option>
-<!-- <option>Customer Success</option> -->
-<option>Project Management</option>
-<!-- <option>Product Management</option> -->
-<option>Operations Management</option>
+                  Legal & Compliance
+                  <option>Legal Research</option>
+                  <option>Corporate Law</option>
+                  <option>Technology Law</option>
+                  <option>Cyber Law</option>
+                  <option>Intellectual Property Rights (IPR)</option>
+                  <option>Data Protection & Privacy Law</option>
+                  <option>Regulatory Compliance</option>
+                  <option>Contract Management</option>
 
-<!-- Legal & Compliance -->
-<option>Legal Research</option>
-<option>Corporate Law</option>
-<!-- <option>Technology Law</option> -->
-<option>Cyber Law</option>
-<option>Intellectual Property Rights (IPR)</option>
-<option>Data Protection & Privacy Law</option>
-<option>Regulatory Compliance</option>
-<!-- <option>Contract Management</option> -->
+                  Finance & Administration
+                  <option>Finance & Accounts</option>
+                  <option>Taxation & GST</option>
+                  <option>Internal Audit</option>
+                  <option>Human Resources (HR)</option>
+                  <option>Recruitment & Talent Acquisition</option>
+                  <option>Administration</option>
 
-<!-- Finance & Administration -->
-<!-- <option>Finance & Accounts</option> -->
-<!-- <option>Taxation & GST</option> -->
-<!-- <option>Internal Audit</option> -->
-<!-- <option>Human Resources (HR)</option> -->
-<!-- <option>Recruitment & Talent Acquisition</option> -->
-<!-- <option>Administration</option> -->
+                  Education & Training
+                  <option>Technical Training</option>
+                  <option>E-Learning Development</option>
+                  <option>EdTech Solutions</option>
+                  <option>Research Assistance</option>
 
-<!-- Education & Training -->
-<option>Technical Training</option>
-<!-- <option>E-Learning Development</option> -->
-<option>EdTech Solutions</option>
-<!-- <option>Research Assistance</option> -->
+                  Emerging Business Areas
+                  <option>Agricultural Technology (AgriTech)</option>
+                  <option>Renewable Energy Technology</option>
+                  <option>Smart Hospitality Solutions</option>
+                  <option>Healthcare Technology</option>
+                  <option>FinTech Solutions</option>
+                  <option>Logistics & Supply Chain Technology</option>
 
-<!-- Emerging Business Areas -->
-<option>Agricultural Technology (AgriTech)</option>
-<option>Renewable Energy Technology</option>
-<option>Smart Hospitality Solutions</option>
-<option>Healthcare Technology</option>
-<option>FinTech Solutions</option>
-<option>Logistics & Supply Chain Technology</option>
-
-<!-- Students -->
-<!-- <option>Cybersecurity Internship</option>
-<option>Software Development Internship</option>
-<option>AI/ML Internship</option>
-<option>Research Internship</option>
-<option>Legal Internship</option>
-<option>Business Development Internship</option>
-<option>Marketing Internship</option> -->
-<option>Open to Any Relevant Opportunity</option>
-                  <!-- <option></option> -->
-                  <!-- <option>Frontend Developer</option>
+                  Students
+                  <option>Cybersecurity Internship</option>
+                  <option>Software Development Internship</option>
+                  <option>AI/ML Internship</option>
+                  <option>Research Internship</option>
+                  <option>Legal Internship</option>
+                  <option>Business Development Internship</option>
+                  <option>Marketing Internship</option>
+                  <option>Open to Any Relevant Opportunity</option>
+                  <option></option>
+                  <option>Frontend Developer</option>
                   <option>Backend Developer</option>
                   <option>Cybersecurity Analyst</option>
                   <option>SOC Analyst</option>
                   <option>AI / ML Engineer</option>
                   <option>Cloud Engineer</option>
-                  <option>DevOps Engineer</option> -->
-                  <!-- <option>UI / UX Designer</option>
+                  <option>DevOps Engineer</option>
+                  <option>UI / UX Designer</option>
                   <option>Legal & Compliance</option>
                   <option>Research Associate</option>
                   <option>Internship Program</option>
                   <option>Other Relevant Position</option> -->
+
+                  <option value="">Select Project</option>
+                  <option value="Ternary Logic Computing & CPU Architecture">Ternary Logic Computing & CPU Architecture</option>
+                  <option value="Intelligent Networks (Netflow Monitor)">Intelligent Networks (Netflow Monitor)</option>
+                  <option value="SmartFactory Mapper">SmartFactory Mapper</option>
+                  <option value="Vendor-Agnostic Automotive Security Framework">Vendor-Agnostic Automotive Security Framework</option>
+                  <option value="AgriTech Precision Platform">AgriTech Precision Platform</option>
+                  <option value="Compiler AST Framework">Compiler AST Framework</option>
+                  <option value="Quantum Sensing PoC">Quantum Sensing PoC</option>
+                  <option value="Kali ISO Santoku Integration">Kali ISO Santoku Integration</option>
+                  <option value="HTTP/TCP Web Simulator">HTTP/TCP Web Simulator</option>
+                  <option value="Bug Hunting Program (Web Application Security)">Bug Hunting Program (Web Application Security)</option>
+                  <option value="MQTT Chat Builder">MQTT Chat Builder</option>
+                  <option value="Bug Hunting Program (Android Application Security)">Bug Hunting Program (Android Application Security)</option>
 
                 </select>
 
@@ -1128,21 +1146,7 @@
 
               </div>
 
-              <div class="form-group">
-
-                <label>
-                  Expected CTC / Stipend (in INR)
-                  <span class="required">*</span>
-                </label>
-
-                <input
-                  type="text"
-                  name="expected_ctc"
-                  id="expected_ctc"
-                  placeholder="10,00,000"
-                />
-
-              </div>
+             
 
             </div>
 
@@ -1425,7 +1429,7 @@
         position: document.getElementById('position').value,
         employment_type: document.getElementById('employment_type').value,
         experience: document.getElementById('experience').value,
-        expected_ctc: document.getElementById('expected_ctc').value,
+        state: document.getElementById('state').value,
         qualification: document.getElementById('qualification').value,
         institution: document.getElementById('institution').value,
         skills: document.getElementById('skills').value,
@@ -1491,6 +1495,8 @@
       }
     }
   </script>
+
+<script src="district_data.js"></script>
 
 </body>
 </html>
