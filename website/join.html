@@ -818,12 +818,14 @@
                 </label>
 
                 <input
-                  type="tel"
-                  name="phone"
-                  id="phone"
-                  required
-                  placeholder="9876543210"
-                />
+                type="tel"
+                name="phone"
+                id="phone"
+                pattern="[0-9]{10}"
+                maxlength="10"
+                required
+                placeholder="9876543210"
+              />
 
               </div>
 
@@ -1424,12 +1426,13 @@
         full_name: document.getElementById('full_name').value,
         email: document.getElementById('email').value,
         phone: document.getElementById('phone').value,
+        state: document.getElementById('state').value,
         city: document.getElementById('city').value,
         portfolio: document.getElementById('portfolio').value,
         position: document.getElementById('position').value,
         employment_type: document.getElementById('employment_type').value,
+        project: document.getElementById('projects').value,
         experience: document.getElementById('experience').value,
-        state: document.getElementById('state').value,
         qualification: document.getElementById('qualification').value,
         institution: document.getElementById('institution').value,
         skills: document.getElementById('skills').value,
@@ -1495,6 +1498,25 @@
       }
     }
   </script>
+
+  <script>
+document.getElementById('resume_pdf').addEventListener('change', function () {
+  const file = this.files[0];
+
+  if (!file) return;
+
+  if (file.type !== 'application/pdf') {
+    alert('Only PDF files are allowed.');
+    this.value = '';
+    return;
+  }
+
+  if (file.size > 1024 * 1024) {
+    alert('File size must be less than 1 MB.');
+    this.value = '';
+  }
+});
+</script>
 
 <script src="district_data.js"></script>
 
