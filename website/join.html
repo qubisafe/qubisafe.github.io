@@ -930,7 +930,7 @@
               <div class="form-group">
 
                 <label>
-                  Duration of Engagement
+                 Expected Duration of Engagement
                   <span class="required">*</span>
                 </label>
 
@@ -1422,7 +1422,7 @@
       const file = fileInput.files[0];
 
       // Build out regular inputs object mapped directly
-      const payload = {
+        const payload = {
         full_name: document.getElementById('full_name').value,
         email: document.getElementById('email').value,
         phone: document.getElementById('phone').value,
@@ -1431,18 +1431,23 @@
         portfolio: document.getElementById('portfolio').value,
         position: document.getElementById('position').value,
         employment_type: document.getElementById('employment_type').value,
-        project: document.getElementById('projects').value,
+
+        // FIXED
+        project: document.getElementById('project').value,
+
         experience: document.getElementById('experience').value,
         qualification: document.getElementById('qualification').value,
         institution: document.getElementById('institution').value,
         skills: document.getElementById('skills').value,
         experience_details: document.getElementById('experience_details').value,
+
+        // This is the separate textarea for project descriptions
         projects: document.getElementById('projects').value,
+
         motivation: document.getElementById('motivation').value,
         fileData: null,
         fileName: null
       };
-
       // Wrap sending process inside a reusable processing block
       const sendData = () => {
         fetch(APPS_SCRIPT_URL, {
