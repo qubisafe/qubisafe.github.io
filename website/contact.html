@@ -8,7 +8,64 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/components.css">
+  <style>
+    /* Premium submit button */
+#submitBtn{
+  width:100%;
+  margin-top:1rem;
+  padding:14px 18px;
+  border:none;
+  border-radius:14px;
+  background:linear-gradient(135deg,#7c3aed 0%, #a855f7 50%, #ec4899 100%);
+  color:#ffffff;
+  font-size:1rem;
+  font-weight:700;
+  letter-spacing:0.3px;
+  cursor:pointer;
+  transition:all .25s ease;
+  box-shadow:0 10px 25px rgba(124,58,237,.35);
+  position:relative;
+  overflow:hidden;
+}
 
+#submitBtn:hover{
+  transform:translateY(-2px);
+  box-shadow:0 14px 32px rgba(168,85,247,.45);
+}
+
+#submitBtn:active{
+  transform:translateY(0);
+  box-shadow:0 8px 18px rgba(124,58,237,.28);
+}
+
+#submitBtn:disabled{
+  opacity:.75;
+  cursor:not-allowed;
+  transform:none;
+  box-shadow:none;
+}
+
+/* subtle shine effect */
+#submitBtn::before{
+  content:'';
+  position:absolute;
+  top:0;
+  left:-120%;
+  width:60%;
+  height:100%;
+  background:linear-gradient(
+    120deg,
+    transparent,
+    rgba(255,255,255,.25),
+    transparent
+  );
+  transition:left .6s ease;
+}
+
+#submitBtn:hover::before{
+  left:140%;
+}
+  </style>
 </head>
 <body>
   <div class="loading">
@@ -30,22 +87,154 @@
         <div class="contact-form-container fade-in">
           <h2 class="section-title">Contact Form</h2>
           <div class="google-form-wrapper">
-<!--             
-            <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSer7dC4WEWg818w408kwwjSFzx6j8k-8izLWFgTzozu-1ye3A/viewform?embedded=true" width="640" height="955" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe> -->
-            <iframe 
-              src="https://docs.google.com/forms/d/e/1FAIpQLSer7dC4WEWg818w408kwwjSFzx6j8k-8izLWFgTzozu-1ye3A/viewform?embedded=true" 
-              class="google-form-iframe"
-              frameborder="0" 
-              marginheight="0" 
-              marginwidth="0">
-              Loading…
-            </iframe>
-          <!-- </div>
-          <p style="text-align: center; margin-top: 1rem; color: var(--secondary-text);">
-            <strong>Google Form Dimensions:</strong> Width: 100% (responsive), Height: 800px<br>
-            <em>The form will automatically adjust to mobile devices</em>
-          </p>
-        </div> -->
+         
+       <!-- Contact Form -->
+<form id="contactForm" class="contact-form">
+  <div class="grid grid-2" style="gap:1rem;">
+    <div class="form-group">
+      <label for="full_name">Full Name *</label>
+      <input type="text" id="full_name" required placeholder="Your full name">
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email Address *</label>
+      <input type="email" id="email" required placeholder="you@example.com">
+    </div>
+  </div>
+
+  <div class="grid grid-2" style="gap:1rem; margin-top:1rem;">
+    <div class="form-group">
+      <label for="phone">Phone Number</label>
+      <input type="tel" id="phone" placeholder="+91 9876543210">
+    </div>
+
+    <div class="form-group">
+      <label for="subject">Subject *</label>
+      <input type="text" id="subject" required placeholder="Subject">
+    </div>
+  </div>
+
+  <div class="form-group" style="margin-top:1rem;">
+    <label for="message">Message *</label>
+    <textarea id="message" rows="6" required placeholder="Write your message here..."></textarea>
+  </div>
+
+  <button type="submit" class="btn btn-primary" id="submitBtn">
+  <i class="fa-solid fa-paper-plane" style="margin-right:8px;"></i>
+  Send Message
+</button>
+
+  <div id="status" style="display:none; margin-top:1rem; padding:1rem; border-radius:12px;"></div>
+</form>
+
+<style>
+  .contact-form .form-group label{
+    display:block;
+    margin-bottom:0.5rem;
+    font-weight:600;
+    color:var(--text-color, #fff);
+  }
+
+  .contact-form input,
+  .contact-form textarea{
+    width:100%;
+    padding:14px 16px;
+    border-radius:12px;
+    border:1px solid rgba(255,255,255,0.1);
+    background:rgba(255,255,255,0.04);
+    color:var(--text-color, #fff);
+    font-family:inherit;
+    font-size:0.95rem;
+    transition:all .2s ease;
+  }
+
+  .contact-form input:focus,
+  .contact-form textarea:focus{
+    outline:none;
+    border-color:#8b5cf6;
+    box-shadow:0 0 0 3px rgba(139,92,246,0.15);
+  }
+
+  .contact-form input::placeholder,
+  .contact-form textarea::placeholder{
+    color:rgba(255,255,255,0.45);
+  }
+
+  #status.success{
+    display:block !important;
+    background:rgba(34,197,94,.12);
+    border:1px solid rgba(34,197,94,.25);
+    color:#bbf7d0;
+  }
+
+  #status.error{
+    display:block !important;
+    background:rgba(239,68,68,.12);
+    border:1px solid rgba(239,68,68,.25);
+    color:#fecaca;
+  }
+
+  @media (max-width:768px){
+    .grid.grid-2{
+      grid-template-columns:1fr !important;
+    }
+  }
+</style>
+
+<script>
+  // Replace with your deployed Google Apps Script Web App URL
+  // Remove the trailing space at the end of the URL
+const scriptURL = 'https://script.google.com/macros/s/AKfycbyzxCXlwgZg3197JOi_BpNM8a130V828macAcCV8vvkj2bazAa7SmLHtmXzFAsI4hec/exec';
+
+  const form = document.getElementById('contactForm');
+  const statusBox = document.getElementById('status');
+  const submitBtn = document.getElementById('submitBtn');
+
+  form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+
+  statusBox.className = '';
+  statusBox.style.display = 'none';
+  submitBtn.disabled = true;
+  submitBtn.textContent = 'Sending...';
+
+  // Use FormData instead of JSON
+  const formData = new FormData();
+  formData.append('full_name', document.getElementById('full_name').value.trim());
+  formData.append('email', document.getElementById('email').value.trim());
+  formData.append('phone', document.getElementById('phone').value.trim());
+  formData.append('subject', document.getElementById('subject').value.trim());
+  formData.append('message', document.getElementById('message').value.trim());
+
+  try {
+    const response = await fetch(scriptURL, {
+      method: 'POST',
+      body: formData
+      // No Content-Type header — let browser set it automatically
+    });
+
+    const result = await response.json();
+
+    if (result.result === 'success') {
+      statusBox.className = 'success';
+      statusBox.textContent = result.message || 'Message sent successfully.';
+      form.reset();
+    } else {
+      throw new Error(result.message || 'Submission failed');
+    }
+
+  } catch (error) {
+    console.error(error);
+    statusBox.className = 'error';
+    statusBox.textContent = 'Unable to send your message right now. Please try again later.';
+  } finally {
+    statusBox.style.display = 'block';
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'Send Message';
+  }
+});
+</script> 
+
 
         <div class="grid grid-3 fade-in" style="margin-top: 4rem;">
           <div class="glass-card">
@@ -53,11 +242,6 @@
             <p><a href="mailto:contact@qubisafe.com">contact@qubisafe.com</a></p>
             <p><a href="mailto:hiring@qubisafe.com">hiring@qubisafe.com</a></p>
           </div>
-          <!-- <div class="glass-card">
-            <h3>📞 Phone</h3>
-            <p>+1 (555) 123-4567</p>
-            <p>+1 (555) 765-4321</p>
-          </div> -->
           <div class="glass-card">
             <h3>📍 Address</h3>
             <p> 15891, Shastriagar,<br> Tilwara Ghat Ghat Road, Jabalpur,482003</p>
@@ -66,6 +250,7 @@
       </div>
     </section>
   </main>
+
 
   <div id="footer-placeholder"></div>
 
