@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Qubisafe Business Card — Tech Futurist</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #0a0a0a;
+    font-family: 'Courier New', monospace;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    gap: 48px;
+    padding: 48px 24px;
+  }
+  .label {
+    color: #00b4ff44;
+    font-size: 10px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+  .card-wrap { display: flex; flex-direction: column; gap: 32px; align-items: center; }
+  .card {
+    width: 540px;
+    height: 300px;
+    border-radius: 3px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 40px rgba(0, 180, 255, 0.15), 0 20px 60px rgba(0,0,0,0.8);
+  }
+
+  /* FRONT */
+  .front {
+    background: #111318;
+    border: 1px solid #00b4ff33;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 30px 36px;
+  }
+  /* Grid lines overlay */
+  .front::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(0,180,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,180,255,0.03) 1px, transparent 1px);
+    background-size: 30px 30px;
+    pointer-events: none;
+  }
+  .front .bg-logo {
+    position: absolute;
+    right: -10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 200px;
+    height: 200px;
+    opacity: 0.04;
+    object-fit: contain;
+    filter: hue-rotate(200deg) saturate(2);
+  }
+  .front .corner-tl {
+    position: absolute;
+    top: 0; left: 0;
+    width: 30px; height: 30px;
+    border-top: 2px solid #00b4ff;
+    border-left: 2px solid #00b4ff;
+  }
+  .front .corner-br {
+    position: absolute;
+    bottom: 0; right: 0;
+    width: 30px; height: 30px;
+    border-bottom: 2px solid #00b4ff;
+    border-right: 2px solid #00b4ff;
+  }
+  .front .top-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    z-index: 2;
+  }
+  .front .logo-group {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .front .logo-img {
+    width: 36px;
+    height: 36px;
+    object-fit: contain;
+    filter: brightness(0) invert(1) sepia(1) saturate(2) hue-rotate(185deg);
+  }
+  .front .brand {
+    display: flex;
+    flex-direction: column;
+  }
+  .front .brand-main {
+    color: #00b4ff;
+    font-size: 14px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    font-family: 'Arial', sans-serif;
+    font-weight: 700;
+  }
+  .front .brand-sub {
+    color: #00b4ff66;
+    font-size: 9px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-family: 'Arial', sans-serif;
+    margin-top: 2px;
+  }
+  .front .node-id {
+    color: #00b4ff44;
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-align: right;
+    font-family: 'Courier New', monospace;
+  }
+  .front .mid-block {
+    position: relative;
+    z-index: 2;
+  }
+  .front .hex-marker {
+    color: #00b4ff88;
+    font-size: 10px;
+    letter-spacing: 1px;
+    margin-bottom: 4px;
+  }
+  .front .person-name {
+    color: #ffffff;
+    font-size: 26px;
+    font-family: 'Arial', sans-serif;
+    font-weight: 300;
+    letter-spacing: 1px;
+  }
+  .front .blue-rule {
+    height: 1px;
+    background: linear-gradient(90deg, #00b4ff, transparent);
+    width: 200px;
+    margin: 10px 0;
+  }
+  .front .person-role {
+    color: #00b4ff;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-family: 'Arial', sans-serif;
+  }
+  .front .bottom-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    position: relative;
+    z-index: 2;
+  }
+  .front .contact-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .front .c-line {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #7a8898;
+    font-size: 10px;
+    font-family: 'Arial', sans-serif;
+  }
+  .front .c-line .tag {
+    color: #00b4ff66;
+    font-family: 'Courier New', monospace;
+    font-size: 9px;
+    min-width: 22px;
+  }
+  .front .location-block {
+    text-align: right;
+    color: #3a4858;
+    font-size: 9px;
+    letter-spacing: 1px;
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+  }
+
+  /* BACK */
+  .back {
+    background: #00b4ff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 28px 36px;
+    position: relative;
+  }
+  .back::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(0,0,50,0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,0,50,0.06) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+  .back .bg-logo {
+    position: absolute;
+    width: 280px;
+    height: 280px;
+    opacity: 0.07;
+    object-fit: contain;
+    filter: brightness(0);
+  }
+  .back-inner {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+  }
+  .back .back-top {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 16px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid rgba(0,0,80,0.15);
+  }
+  .back .back-logo {
+    width: 42px;
+    height: 42px;
+    object-fit: contain;
+    filter: brightness(0);
+  }
+  .back .back-title-block {}
+  .back .back-title {
+    color: #003060;
+    font-size: 18px;
+    font-family: 'Arial', sans-serif;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+  }
+  .back .back-tagline {
+    color: #003060;
+    font-size: 9px;
+    letter-spacing: 1.5px;
+    font-family: 'Arial', sans-serif;
+    opacity: 0.7;
+    margin-top: 3px;
+  }
+  .back .services-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-bottom: 12px;
+  }
+  .back .s-chip {
+    background: rgba(0,20,60,0.12);
+    color: #002050;
+    font-size: 9px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-family: 'Arial', sans-serif;
+    padding: 4px 10px;
+    border-radius: 1px;
+    border: 1px solid rgba(0,20,60,0.15);
+  }
+  .back .back-contact {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+  .back .bc-left {}
+  .back .bc-line {
+    color: #003060;
+    font-size: 10px;
+    font-family: 'Courier New', monospace;
+    margin-bottom: 3px;
+    opacity: 0.8;
+  }
+  .back .bc-addr {
+    color: #003060;
+    font-size: 9px;
+    font-family: 'Arial', sans-serif;
+    opacity: 0.6;
+    line-height: 1.5;
+    max-width: 280px;
+  }
+  .back .bc-right {
+    text-align: right;
+    color: #002050;
+    font-size: 9px;
+    font-family: 'Arial', sans-serif;
+    opacity: 0.6;
+    line-height: 1.6;
+  }
+</style>
+</head>
+<body>
+
+<div class="card-wrap">
+  <div class="label">// front</div>
+
+  <!-- FRONT -->
+  <div class="card front">
+    <div class="corner-tl"></div>
+    <div class="corner-br"></div>
+    <img src="https://qubisafe.com/website/Media/solid_color-removebg-preview.png" class="bg-logo" alt="">
+
+    <div class="top-row">
+      <div class="logo-group">
+        <img src="https://qubisafe.com/website/Media/solid_color-removebg-preview.png" class="logo-img" alt="Qubisafe">
+        <div class="brand">
+          <div class="brand-main">Qubisafe</div>
+          <div class="brand-sub">Private Limited</div>
+        </div>
+      </div>
+      <div class="node-id">QS-2025-001<br>Est. April 2025</div>
+    </div>
+
+    <div class="mid-block">
+      <div class="hex-marker">// executive.ceo</div>
+      <div class="person-name">Sunita Choubey</div>
+      <div class="blue-rule"></div>
+      <div class="person-role">Chief Executive Officer &amp; Co-Founder</div>
+    </div>
+
+    <div class="bottom-row">
+      <div class="contact-stack">
+        <div class="c-line"><span class="tag">@</span>contact@qubisafe.com</div>
+        <div class="c-line"><span class="tag">⌖</span>qubisafe.com</div>
+        <div class="c-line"><span class="tag">in</span>linkedin.com/company/qubisafe</div>
+        <div class="c-line"><span class="tag">𝕏</span>@thequbisafe</div>
+      </div>
+      <div class="location-block">
+        Jabalpur<br>Madhya Pradesh<br>India — 482003
+      </div>
+    </div>
+  </div>
+
+  <div class="label">// back</div>
+
+  <!-- BACK -->
+  <div class="card back">
+    <img src="https://qubisafe.com/website/Media/solid_color-removebg-preview.png" class="bg-logo" alt="">
+    <div class="back-inner">
+      <div class="back-top">
+        <img src="https://qubisafe.com/website/Media/solid_color-removebg-preview.png" class="back-logo" alt="">
+        <div class="back-title-block">
+          <div class="back-title">Qubisafe</div>
+          <div class="back-tagline">Pioneering &amp; Safeguarding the Future of Technology</div>
+        </div>
+      </div>
+      <div class="services-row">
+        <span class="s-chip">Cybersecurity</span>
+        <span class="s-chip">AI &amp; Machine Learning</span>
+        <span class="s-chip">Cloud Computing</span>
+        <span class="s-chip">Quantum Computing</span>
+        <span class="s-chip">Blockchain &amp; Web3</span>
+        <span class="s-chip">Industrial IoT</span>
+        <span class="s-chip">Software Development</span>
+        <span class="s-chip">AR / VR / MR</span>
+        <span class="s-chip">Compliance &amp; Risk</span>
+      </div>
+      <div class="back-contact">
+        <div class="bc-left">
+          <div class="bc-line">contact@qubisafe.com &nbsp;·&nbsp; qubisafe.com</div>
+          <div class="bc-addr">15891, Shastrinagar, Tilwara Ghat Road, Jabalpur — 482003, MP, India</div>
+        </div>
+        <div class="bc-right">
+          Healthcare Tech<br>Manufacturing<br>Sustainable Tech
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

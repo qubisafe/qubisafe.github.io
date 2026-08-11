@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>QubiSafe · Credential Verification</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#060b18;
+  --blue:#00c6ff;
+  --violet:#7b2ff7;
+  --green:#22c55e;
+  --text:#e5f0ff;
+  --muted:#9fb3d9;
+  --border:rgba(255,255,255,.13);
+  --cell:rgba(255,255,255,.05);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+
+body{
+  font-family:'Montserrat',sans-serif;
+  background:
+    radial-gradient(circle at 15% 15%, rgba(0,198,255,.10), transparent 30%),
+    radial-gradient(circle at 85% 80%, rgba(123,47,247,.12), transparent 30%),
+    linear-gradient(135deg,#060b18,#091224,#0b1020);
+  color:var(--text);
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  padding:32px 16px 48px;
+}
+
+/* ── top bar ── */
+.topbar{
+  width:100%;max-width:480px;
+  display:flex;align-items:center;justify-content:space-between;
+  margin-bottom:28px;
+}
+.org{
+  display:flex;align-items:center;gap:9px;
+}
+.org img{width:26px;height:26px;border-radius:50%;}
+.org-name{
+  font-family:'Orbitron',sans-serif;
+  font-size:13px;letter-spacing:.4px;
+  background:linear-gradient(90deg,var(--blue),#9d7bff);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+}
+.verify-tag{
+  font-size:10px;font-weight:700;letter-spacing:.8px;
+  color:#86efac;
+  border:1px solid rgba(34,197,94,.35);
+  background:rgba(34,197,94,.10);
+  padding:5px 12px;border-radius:999px;
+  display:flex;align-items:center;gap:6px;
+}
+.verify-tag .dot{
+  width:7px;height:7px;border-radius:50%;
+  background:var(--green);
+  box-shadow:0 0 8px var(--green);
+  animation:pulse 2s infinite;
+}
+@keyframes pulse{
+  0%,100%{opacity:1;transform:scale(1);}
+  50%{opacity:.5;transform:scale(.85);}
+}
+
+/* ── card ── */
+.card{
+  width:100%;max-width:480px;
+  border-radius:24px;
+  background:linear-gradient(145deg,rgba(255,255,255,.07),rgba(255,255,255,.02));
+  border:1px solid var(--border);
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,.02),
+    0 24px 60px rgba(0,0,0,.5),
+    0 0 50px rgba(0,198,255,.06);
+  backdrop-filter:blur(14px);
+  overflow:hidden;
+  position:relative;
+}
+
+/* top accent line */
+.card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--blue),var(--violet));
+  z-index:2;
+}
+
+/* grid texture */
+.card::after{
+  content:'';position:absolute;inset:0;
+  background:
+    linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);
+  background-size:24px 24px;
+  pointer-events:none;
+}
+
+/* corner glow */
+.glow{
+  position:absolute;bottom:-40px;right:-40px;
+  width:200px;height:200px;
+  background:radial-gradient(circle,rgba(123,47,247,.30),transparent 70%);
+  filter:blur(10px);pointer-events:none;
+}
+
+.inner{
+  position:relative;z-index:1;
+  padding:28px 26px 24px;
+}
+
+/* ── hero row ── */
+.hero{
+  display:flex;align-items:center;gap:20px;
+  padding-bottom:20px;
+  border-bottom:1px solid rgba(255,255,255,.07);
+}
+.avatar{
+  width:80px;height:80px;border-radius:16px;overflow:hidden;flex-shrink:0;
+  border:2px solid rgba(255,255,255,.22);
+  box-shadow:0 0 22px rgba(0,198,255,.20);
+}
+.avatar img{width:100%;height:100%;object-fit:cover;}
+.hero-text{}
+.name{font-size:22px;font-weight:800;line-height:1.1;color:#fff;}
+.role{margin-top:5px;font-size:12px;font-weight:600;color:#b7d6ff;}
+.id-chip{
+  margin-top:10px;display:inline-flex;align-items:center;gap:6px;
+  padding:5px 11px;border-radius:8px;
+  background:rgba(0,198,255,.08);
+  border:1px solid rgba(0,198,255,.20);
+  font-size:10.5px;color:#7dd3fc;font-weight:700;letter-spacing:.4px;
+}
+.id-chip svg{width:11px;height:11px;stroke:#7dd3fc;fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;}
+
+/* ── info grid ── */
+.grid{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:10px;margin-top:18px;
+}
+.cell{
+  background:var(--cell);
+  border:1px solid rgba(255,255,255,.07);
+  border-radius:12px;padding:10px 12px;
+}
+.lbl{
+  font-size:9px;text-transform:uppercase;letter-spacing:.8px;color:var(--muted);
+}
+.val{
+  margin-top:3px;font-size:12px;font-weight:700;color:#f0f8ff;
+}
+
+/* validity banner */
+.validity{
+  margin-top:14px;
+  padding:11px 14px;
+  border-radius:12px;
+  background:rgba(34,197,94,.08);
+  border:1px solid rgba(34,197,94,.22);
+  display:flex;align-items:center;justify-content:space-between;
+}
+.validity-left{
+  display:flex;align-items:center;gap:10px;
+}
+.shield{
+  width:32px;height:32px;
+  background:rgba(34,197,94,.12);
+  border:1px solid rgba(34,197,94,.28);
+  border-radius:10px;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+}
+.shield svg{width:16px;height:16px;stroke:#4ade80;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+.validity-text .v-title{font-size:11px;font-weight:700;color:#86efac;}
+.validity-text .v-sub{font-size:10px;color:var(--muted);margin-top:1px;}
+.expires{font-size:10px;color:var(--muted);text-align:right;}
+.expires strong{display:block;font-size:12px;font-weight:700;color:#f0f8ff;}
+
+/* ── footer ── */
+.footer{
+  margin-top:20px;
+  padding-top:16px;
+  border-top:1px solid rgba(255,255,255,.07);
+  display:flex;align-items:center;justify-content:space-between;
+}
+.footer-brand{
+  display:flex;align-items:center;gap:8px;
+}
+.footer-brand img{width:18px;height:18px;border-radius:50%;}
+.footer-brand span{font-size:10px;color:var(--muted);}
+.verified-stamp{
+  display:flex;align-items:center;gap:5px;
+  font-size:10px;font-weight:700;color:#4ade80;
+}
+.verified-stamp svg{width:13px;height:13px;stroke:#4ade80;fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;}
+
+/* ── scan timestamp ── */
+.timestamp{
+  margin-top:24px;
+  font-size:10px;color:var(--muted);
+  text-align:center;letter-spacing:.3px;
+}
+.timestamp span{color:#7dd3fc;}
+</style>
+</head>
+<body>
+
+<!-- top bar -->
+<div class="topbar">
+  <div class="org">
+    <img src="https://qubisafe.com/website/Media/solid_color.png" alt="QubiSafe">
+    <span class="org-name">QUBISAFE PRIVATE LIMITED</span>
+  </div>
+  <div class="verify-tag">
+    <span class="dot"></span>
+    VERIFIED
+  </div>
+</div>
+
+<!-- verification card -->
+<div class="card">
+  <div class="glow"></div>
+  <div class="inner">
+
+    <!-- hero -->
+    <div class="hero">
+      <div class="avatar">
+        <img src="https://i.pravatar.cc/300?img=12" alt="Aarav Sharma">
+      </div>
+      <div class="hero-text">
+        <div class="name">Aarav Sharma</div>
+        <div class="role">Cybersecurity Research Engineer</div>
+        <div class="id-chip">
+          <!-- id card icon -->
+          <svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+          QBS-RD-0147
+        </div>
+      </div>
+    </div>
+
+    <!-- info grid -->
+    <div class="grid">
+      <div class="cell">
+        <div class="lbl">Department</div>
+        <div class="val">Quantum Security Lab</div>
+      </div>
+      <div class="cell">
+        <div class="lbl">Engagement</div>
+        <div class="val">3 Months</div>
+      </div>
+      <div class="cell">
+        <div class="lbl">Issued On</div>
+        <div class="val">06 Aug 2026</div>
+      </div>
+      <div class="cell">
+        <div class="lbl">Card Type</div>
+        <div class="val">Employee · Digital ID</div>
+      </div>
+    </div>
+
+    <!-- validity banner -->
+    <div class="validity">
+      <div class="validity-left">
+        <div class="shield">
+          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+        </div>
+        <div class="validity-text">
+          <div class="v-title">Credential Active</div>
+          <div class="v-sub">Verified by QubiSafe system</div>
+        </div>
+      </div>
+      <div class="expires">
+        <span>Valid till</span>
+        <strong>05 Aug 2028</strong>
+      </div>
+    </div>
+
+    <!-- footer -->
+    <div class="footer">
+      <div class="footer-brand">
+        <img src="https://qubisafe.com/website/Media/solid_color.png" alt="">
+        <span>qubisafe.com &nbsp;·&nbsp; contact@qubisafe.com</span>
+      </div>
+      <div class="verified-stamp">
+        <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+        Authentic
+      </div>
+    </div>
+
+  </div><!-- /inner -->
+</div><!-- /card -->
+
+<!-- scan time -->
+<div class="timestamp">
+  Scanned on <span id="ts"></span> &nbsp;·&nbsp; This page is auto-generated upon QR scan
+</div>
+
+<script>
+  const now = new Date();
+  const fmt = now.toLocaleString('en-IN',{
+    day:'2-digit',month:'short',year:'numeric',
+    hour:'2-digit',minute:'2-digit',hour12:true
+  });
+  document.getElementById('ts').textContent = fmt;
+</script>
+
+</body>
+</html>

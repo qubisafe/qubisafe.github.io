@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Qubisafe Business Card — Premium Prestige</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #f0ebe3;
+    font-family: 'Georgia', Times, serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    gap: 48px;
+    padding: 48px 24px;
+  }
+  .label {
+    color: #7a1530;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-family: 'Arial', sans-serif;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+  .card-wrap { display: flex; flex-direction: column; gap: 32px; align-items: center; }
+  .card {
+    width: 540px;
+    height: 300px;
+    border-radius: 2px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 30px rgba(0,0,0,0.2), 0 1px 4px rgba(0,0,0,0.1);
+  }
+
+  /* FRONT */
+  .front {
+    background: #faf8f4;
+    border: 1px solid #e0d8cc;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 32px 40px;
+  }
+  .front .bg-logo {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 240px;
+    height: 240px;
+    opacity: 0.035;
+    object-fit: contain;
+  }
+  .front .top-stripe {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: #7a1530;
+  }
+  .front .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    position: relative;
+    z-index: 2;
+  }
+  .front .brand-col {}
+  .front .logo-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .front .logo-img {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+  }
+  .front .brand-name {
+    color: #1a1a1a;
+    font-size: 18px;
+    font-weight: normal;
+    letter-spacing: 2px;
+    font-family: 'Arial', sans-serif;
+    text-transform: uppercase;
+  }
+  .front .brand-pvt {
+    color: #7a1530;
+    font-size: 8.5px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-family: 'Arial', sans-serif;
+    margin-top: 4px;
+  }
+  .front .crest-area {
+    text-align: right;
+  }
+  .front .crest-line {
+    width: 1px;
+    height: 50px;
+    background: #7a1530;
+    margin-left: auto;
+    margin-bottom: 6px;
+  }
+  .front .crest-text {
+    color: #7a1530;
+    font-size: 8px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-family: 'Arial', sans-serif;
+    white-space: nowrap;
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    height: 100%;
+    display: inline-block;
+  }
+  .front .center-block {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+  }
+  .front .ornament {
+    color: #7a1530;
+    font-size: 14px;
+    letter-spacing: 4px;
+    margin-bottom: 8px;
+    opacity: 0.6;
+  }
+  .front .person-name {
+    color: #1a1a1a;
+    font-size: 26px;
+    font-weight: normal;
+    font-style: italic;
+    letter-spacing: 1px;
+  }
+  .front .rule-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: center;
+    margin: 10px 0;
+  }
+  .front .rule-line {
+    flex: 1;
+    height: 1px;
+    background: #c8b89a;
+    max-width: 80px;
+  }
+  .front .rule-diamond {
+    width: 5px;
+    height: 5px;
+    background: #7a1530;
+    transform: rotate(45deg);
+  }
+  .front .person-role {
+    color: #7a1530;
+    font-size: 10px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    font-family: 'Arial', sans-serif;
+  }
+  .front .bottom-block {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    position: relative;
+    z-index: 2;
+  }
+  .front .contact-left {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .front .c-item {
+    color: #5a5040;
+    font-size: 10.5px;
+    font-family: 'Arial', sans-serif;
+    letter-spacing: 0.3px;
+  }
+  .front .c-item span {
+    color: #7a1530;
+    margin-right: 6px;
+    font-size: 9px;
+  }
+  .front .address-right {
+    text-align: right;
+    color: #8a7a6a;
+    font-size: 9.5px;
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+  }
+
+  /* BACK */
+  .back {
+    background: #7a1530;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 30px 44px;
+    position: relative;
+  }
+  .back::before {
+    content: '';
+    position: absolute;
+    inset: 12px;
+    border: 1px solid rgba(255,255,255,0.15);
+    pointer-events: none;
+  }
+  .back .bg-logo {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 280px;
+    height: 280px;
+    opacity: 0.06;
+    object-fit: contain;
+    filter: brightness(0) invert(1);
+  }
+  .back-inner {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    text-align: center;
+  }
+  .back .back-logo {
+    width: 46px;
+    height: 46px;
+    object-fit: contain;
+    filter: brightness(0) invert(1);
+    margin-bottom: 12px;
+  }
+  .back .back-name {
+    color: #ffffff;
+    font-size: 20px;
+    font-weight: normal;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    font-family: 'Arial', sans-serif;
+  }
+  .back .back-pvt {
+    color: rgba(255,255,255,0.5);
+    font-size: 8px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-family: 'Arial', sans-serif;
+    margin-top: 4px;
+  }
+  .back .gold-divider {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: center;
+    margin: 16px 0;
+  }
+  .back .gd-line { flex: 1; height: 1px; background: rgba(255,200,100,0.4); max-width: 70px; }
+  .back .gd-diamond { width: 5px; height: 5px; background: rgba(255,200,100,0.7); transform: rotate(45deg); }
+  .back .services-text {
+    color: rgba(255,255,255,0.7);
+    font-size: 10px;
+    font-family: 'Arial', sans-serif;
+    letter-spacing: 1px;
+    line-height: 1.8;
+    text-align: center;
+    margin-bottom: 14px;
+  }
+  .back .services-text strong {
+    color: rgba(255,200,100,0.8);
+    font-weight: normal;
+  }
+  .back .contact-footer {
+    color: rgba(255,255,255,0.55);
+    font-size: 9.5px;
+    font-family: 'Arial', sans-serif;
+    letter-spacing: 0.5px;
+    line-height: 1.6;
+    text-align: center;
+  }
+  .back .tagline-italic {
+    color: rgba(255,200,100,0.6);
+    font-size: 10px;
+    font-style: italic;
+    font-family: 'Georgia', serif;
+    margin-top: 8px;
+  }
+</style>
+</head>
+<body>
+
+<div class="card-wrap">
+  <div class="label">Front</div>
+
+  <!-- FRONT -->
+  <div class="card front">
+    <div class="top-stripe"></div>
+    <img src="https://qubisafe.com/website/Media/solid_color-removebg-preview.png" class="bg-logo" alt="">
+
+    <div class="header">
+      <div class="brand-col">
+        <div class="logo-row">
+          <img src="https://qubisafe.com/website/Media/solid_color-removebg-preview.png" class="logo-img" alt="Qubisafe">
+          <div>
+            <div class="brand-name">Qubisafe</div>
+            <div class="brand-pvt">Private Limited &nbsp;·&nbsp; Est. April 2025</div>
+          </div>
+        </div>
+      </div>
+      <div style="display:flex; flex-direction:column; align-items:center; padding-top:4px;">
+        <div class="crest-line"></div>
+        <div style="color:#7a1530; font-size:8px; letter-spacing:2px; text-transform:uppercase; font-family:Arial,sans-serif; text-align:center; white-space:nowrap;">Jabalpur · India</div>
+      </div>
+    </div>
+
+    <div class="center-block">
+      <div class="ornament">· · ·</div>
+      <div class="person-name">Sunita Choubey</div>
+      <div class="rule-row">
+        <div class="rule-line"></div>
+        <div class="rule-diamond"></div>
+        <div class="rule-line"></div>
+      </div>
+      <div class="person-role">Chief Executive Officer &amp; Co-Founder</div>
+    </div>
+
+    <div class="bottom-block">
+      <div class="contact-left">
+        <div class="c-item"><span>✉</span>contact@qubisafe.com</div>
+        <div class="c-item"><span>⌖</span>qubisafe.com</div>
+        <div class="c-item"><span>in</span>linkedin.com/company/qubisafe</div>
+      </div>
+      <div class="address-right">
+        15891, Shastrinagar<br>
+        Tilwara Ghat Road<br>
+        Jabalpur — 482003, MP
+      </div>
+    </div>
+  </div>
+
+  <div class="label">Back</div>
+
+  <!-- BACK -->
+  <div class="card back">
+    <img src="https://qubisafe.com/website/Media/solid_color-removebg-preview.png" class="bg-logo" alt="">
+    <div class="back-inner">
+      <img src="https://qubisafe.com/website/Media/solid_color-removebg-preview.png" class="back-logo" alt="">
+      <div class="back-name">Qubisafe</div>
+      <div class="back-pvt">Private Limited</div>
+      <div class="gold-divider">
+        <div class="gd-line"></div>
+        <div class="gd-diamond"></div>
+        <div class="gd-line"></div>
+      </div>
+      <div class="services-text">
+        <strong>Cybersecurity</strong> &nbsp;·&nbsp; <strong>Artificial Intelligence &amp; ML</strong> &nbsp;·&nbsp; <strong>Cloud Computing</strong><br>
+        <strong>Quantum Computing</strong> &nbsp;·&nbsp; <strong>Blockchain &amp; Web3</strong> &nbsp;·&nbsp; <strong>Industrial IoT</strong><br>
+        <strong>Software Development</strong> &nbsp;·&nbsp; <strong>AR / VR / MR</strong> &nbsp;·&nbsp; <strong>Compliance</strong>
+      </div>
+      <div class="contact-footer">
+        contact@qubisafe.com &nbsp;·&nbsp; qubisafe.com &nbsp;·&nbsp; @thequbisafe<br>
+        15891, Shastrinagar, Tilwara Ghat Road, Jabalpur — 482003, Madhya Pradesh, India
+      </div>
+      <div class="tagline-italic">Pioneering &amp; Safeguarding the Future of Technology</div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

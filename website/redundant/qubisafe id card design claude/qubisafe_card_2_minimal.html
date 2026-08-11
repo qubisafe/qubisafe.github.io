@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Qubisafe Business Card — Minimal Corporate</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #eef0f4;
+    font-family: 'Arial', Helvetica, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    gap: 48px;
+    padding: 48px 24px;
+  }
+  .label {
+    color: #888;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+  .card-wrap { display: flex; flex-direction: column; gap: 32px; align-items: center; }
+  .card {
+    width: 540px;
+    height: 300px;
+    border-radius: 4px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.15);
+  }
+
+  /* FRONT */
+  .front {
+    background: #ffffff;
+    display: flex;
+  }
+  .front .left-bar {
+    width: 8px;
+    background: #006D77;
+    flex-shrink: 0;
+  }
+  .front .content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 30px 36px;
+    position: relative;
+  }
+  .front .bg-logo {
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+    width: 180px;
+    height: 180px;
+    opacity: 0.04;
+    object-fit: contain;
+  }
+  .front .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .front .logo-area {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .front .logo-img {
+    width: 38px;
+    height: 38px;
+    object-fit: contain;
+  }
+  .front .brand-text {}
+  .front .brand-name {
+    color: #111;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+  }
+  .front .brand-sub {
+    color: #006D77;
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-top: 2px;
+  }
+  .front .est {
+    color: #ccc;
+    font-size: 10px;
+    letter-spacing: 1px;
+    text-align: right;
+  }
+  .front .person-section {}
+  .front .person-name {
+    color: #111;
+    font-size: 24px;
+    font-weight: 300;
+    letter-spacing: 0.5px;
+  }
+  .front .teal-rule {
+    width: 36px;
+    height: 2px;
+    background: #006D77;
+    margin: 10px 0;
+  }
+  .front .person-role {
+    color: #006D77;
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+  }
+  .front .contact-cols {
+    display: flex;
+    gap: 32px;
+  }
+  .front .contact-group {}
+  .front .contact-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 5px;
+  }
+  .front .c-dot {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: #006D77;
+    flex-shrink: 0;
+  }
+  .front .c-text {
+    color: #555;
+    font-size: 11px;
+  }
+  .front .tagline-bottom {
+    color: #bbb;
+    font-size: 9px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    text-align: right;
+  }
+
+  /* BACK */
+  .back {
+    background: #006D77;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 36px 44px;
+    position: relative;
+  }
+  .back .bg-logo {
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    opacity: 0.06;
+    object-fit: contain;
+  }
+  .back-inner {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    text-align: center;
+  }
+  .back .logo-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    justify-content: center;
+    margin-bottom: 18px;
+  }
+  .back .back-logo {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    filter: brightness(0) invert(1);
+  }
+  .back .back-name {
+    color: #fff;
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+  }
+  .back .back-sub {
+    color: rgba(255,255,255,0.6);
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+  .back .white-rule {
+    width: 50px;
+    height: 1px;
+    background: rgba(255,255,255,0.3);
+    margin: 18px auto;
+  }
+  .back .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 8px 16px;
+    margin-bottom: 16px;
+  }
+  .back .service-tag {
+    background: rgba(255,255,255,0.12);
+    color: rgba(255,255,255,0.9);
+    font-size: 9px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 5px 8px;
+    border-radius: 2px;
+    text-align: center;
+  }
+  .back .contact-line {
+    color: rgba(255,255,255,0.6);
+    font-size: 10px;
+    margin-top: 4px;
+    letter-spacing: 0.5px;
+  }
+  .back .contact-line a { color: rgba(255,255,255,0.8); text-decoration: none; }
+  .back .addr-line {
+    color: rgba(255,255,255,0.5);
+    font-size: 9px;
+    margin-top: 6px;
+    letter-spacing: 0.5px;
+    line-height: 1.5;
+  }
+</style>
+</head>
+<body>
+
+<div class="card-wrap">
+  <div class="label">Front</div>
+
+  <!-- FRONT -->
+  <div class="card front">
+    <div class="left-bar"></div>
+    <div class="content">
+      <img src="https://qubisafe.com/website/Media/solid_color-removebg-preview.png" class="bg-logo" alt="">
+
+      <div class="header">
+        <div class="logo-area">
+          <img src="https://qubisafe.com/website/Media/solid_color-removebg-preview.png" class="logo-img" alt="Qubisafe">
+          <div class="brand-text">
+            <div class="brand-name">Qubisafe</div>
+            <div class="brand-sub">Private Limited</div>
+          </div>
+        </div>
+        <div class="est">Est. April 2025<br>CIN Registered</div>
+      </div>
+
+      <div class="person-section">
+        <div class="person-name">Sunita Choubey</div>
+        <div class="teal-rule"></div>
+        <div class="person-role">CEO &amp; Co-Founder</div>
+      </div>
+
+      <div class="contact-cols">
+        <div class="contact-group">
+          <div class="contact-row">
+            <div class="c-dot"></div>
+            <div class="c-text">contact@qubisafe.com</div>
+          </div>
+          <div class="contact-row">
+            <div class="c-dot"></div>
+            <div class="c-text">qubisafe.com</div>
+          </div>
+        </div>
+        <div class="contact-group">
+          <div class="contact-row">
+            <div class="c-dot"></div>
+            <div class="c-text">linkedin.com/company/qubisafe</div>
+          </div>
+          <div class="contact-row">
+            <div class="c-dot"></div>
+            <div class="c-text">@thequbisafe</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tagline-bottom">Pioneering &amp; Safeguarding the Future of Technology</div>
+    </div>
+  </div>
+
+  <div class="label">Back</div>
+
+  <!-- BACK -->
+  <div class="card back">
+    <img src="https://qubisafe.com/website/Media/solid_color-removebg-preview.png" class="bg-logo" alt="">
+    <div class="back-inner">
+      <div class="logo-row">
+        <img src="https://qubisafe.com/website/Media/solid_color-removebg-preview.png" class="back-logo" alt="">
+        <div>
+          <div class="back-name">Qubisafe</div>
+          <div class="back-sub">Private Limited</div>
+        </div>
+      </div>
+      <div class="white-rule"></div>
+      <div class="services-grid">
+        <div class="service-tag">Cybersecurity</div>
+        <div class="service-tag">AI &amp; ML</div>
+        <div class="service-tag">Cloud</div>
+        <div class="service-tag">Quantum</div>
+        <div class="service-tag">Blockchain</div>
+        <div class="service-tag">Industrial IoT</div>
+        <div class="service-tag">Software Dev</div>
+        <div class="service-tag">AR / VR / MR</div>
+        <div class="service-tag">Compliance</div>
+      </div>
+      <div class="contact-line">contact@qubisafe.com &nbsp;·&nbsp; qubisafe.com</div>
+      <div class="addr-line">15891, Shastrinagar, Tilwara Ghat Road, Jabalpur — 482003, Madhya Pradesh, India</div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
