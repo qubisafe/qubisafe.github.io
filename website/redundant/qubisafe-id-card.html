@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>QubiSafe Premium ID Cards</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#060b18;
+  --bg2:#0b1020;
+  --blue:#00c6ff;
+  --violet:#7b2ff7;
+  --cyan:#38bdf8;
+  --text:#e5f0ff;
+  --muted:#9fb3d9;
+  --glass:rgba(255,255,255,.08);
+  --border:rgba(255,255,255,.14);
+  --card-w: 420px;
+  --card-h: 265px;
+}
+
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  font-family:'Montserrat',sans-serif;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(0,198,255,.10), transparent 25%),
+    radial-gradient(circle at 80% 30%, rgba(123,47,247,.12), transparent 30%),
+    linear-gradient(135deg,var(--bg),#091224,var(--bg2));
+  color:var(--text);
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+
+header{
+  text-align:center;
+  padding:36px 20px 12px;
+  width:100%;
+}
+
+header h1{
+  margin:0;
+  font-family:'Orbitron',sans-serif;
+  font-size:28px;
+  letter-spacing:1px;
+  background:linear-gradient(90deg,var(--blue),#9d7bff);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+header p{
+  color:var(--muted);
+  max-width:520px;
+  margin:8px auto 0;
+  font-size:13px;
+}
+
+/* Print button */
+.print-btn{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  margin-top:18px;
+  padding:10px 24px;
+  border-radius:999px;
+  border:1px solid rgba(0,198,255,.4);
+  background:rgba(0,198,255,.10);
+  color:#bfe8ff;
+  font-family:'Montserrat',sans-serif;
+  font-size:13px;
+  font-weight:700;
+  letter-spacing:.6px;
+  cursor:pointer;
+  transition:background .2s, box-shadow .2s;
+}
+.print-btn:hover{
+  background:rgba(0,198,255,.20);
+  box-shadow:0 0 18px rgba(0,198,255,.25);
+}
+.print-btn svg{
+  width:16px;height:16px;stroke:#bfe8ff;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;
+}
+
+.hint{
+  margin:10px 0 4px;
+  font-size:11px;
+  color:var(--muted);
+  letter-spacing:.4px;
+}
+
+/* ── Flip card wrapper ── */
+.scene{
+  width: var(--card-w);
+  height: var(--card-h);
+  perspective: 1200px;
+  cursor: pointer;
+  margin:20px 0 40px;
+}
+
+.flipper{
+  width:100%;
+  height:100%;
+  position:relative;
+  transform-style: preserve-3d;
+  transition: transform .7s cubic-bezier(.55,.05,.22,.99);
+}
+
+.scene.flipped .flipper{
+  transform: rotateY(180deg);
+}
+
+.face{
+  position:absolute;
+  inset:0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border-radius:20px;
+  overflow:hidden;
+}
+
+.face.back-face{
+  transform: rotateY(180deg);
+}
+
+/* ── Shared card chrome ── */
+.card-chrome{
+  width:100%;
+  height:100%;
+  position:relative;
+  background:
+    linear-gradient(135deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+  border:1px solid var(--border);
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,.02),
+    0 20px 50px rgba(0,0,0,.45),
+    0 0 40px rgba(0,198,255,.08);
+  backdrop-filter: blur(12px);
+  border-radius:20px;
+  overflow:hidden;
+}
+
+.card-chrome:before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
+  background-size:22px 22px;
+  pointer-events:none;
+  border-radius:20px;
+}
+
+.glow{
+  position:absolute;
+  inset:auto -20% -30% auto;
+  width:180px;
+  height:180px;
+  background:radial-gradient(circle, rgba(123,47,247,.35), transparent 70%);
+  filter:blur(8px);
+  pointer-events:none;
+}
+
+.topline{
+  position:absolute;
+  top:0;left:0;right:0;
+  height:4px;
+  background:linear-gradient(90deg,var(--blue),var(--violet));
+  z-index:3;
+}
+
+.holo{
+  position:absolute;
+  inset:0;
+  background:linear-gradient(120deg, transparent 20%, rgba(255,255,255,.12) 35%, transparent 50%);
+  pointer-events:none;
+  z-index:1;
+}
+
+.watermark{
+  position:absolute;
+  right:-10px;bottom:0;
+  font-size:70px;
+  font-weight:800;
+  opacity:.05;
+  transform:rotate(-18deg);
+  font-family:'Orbitron',sans-serif;
+  pointer-events:none;
+  z-index:0;
+}
+
+/* ── Front content ── */
+.content{
+  position:relative;
+  z-index:2;
+  padding:14px 16px;
+  height:100%;
+  display:flex;
+  flex-direction:column;
+}
+
+.brand{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+}
+
+.logo{
+  font-family:'Orbitron',sans-serif;
+  font-size:16px;
+  letter-spacing:.5px;
+  line-height:1.2;
+}
+
+.logohead{
+  width:18px;height:18px;border-radius:10px;
+  vertical-align:middle;margin-right:4px;
+}
+
+.badge{
+  border:1px solid rgba(56,189,248,.35);
+  background:rgba(56,189,248,.10);
+  color:#bfe8ff;
+  padding:5px 9px;
+  border-radius:999px;
+  font-size:9px;
+  font-weight:700;
+  letter-spacing:.8px;
+}
+
+.main{
+  display:flex;
+  gap:14px;
+  margin-top:12px;
+}
+
+.photo{
+  width:82px;
+  height:98px;
+  border-radius:14px;
+  overflow:hidden;
+  border:2px solid rgba(255,255,255,.25);
+  box-shadow:0 0 20px rgba(0,198,255,.18);
+  flex-shrink:0;
+}
+
+.photo img{width:100%;height:100%;object-fit:cover;}
+
+.name{font-size:18px;font-weight:800;line-height:1.05;}
+.role{margin-top:5px;color:#b7d6ff;font-size:11px;font-weight:600;}
+.idline{
+  margin-top:8px;display:inline-block;
+  padding:5px 9px;border-radius:8px;
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.08);
+  font-size:10px;color:#dbeafe;
+}
+
+.meta{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:7px;
+  margin-top:10px;
+}
+
+.meta div{
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:10px;
+  padding:6px 8px;
+}
+
+.label{font-size:9px;text-transform:uppercase;letter-spacing:.7px;color:#9fb3d9;}
+.value{margin-top:2px;font-size:11px;font-weight:700;color:#f8fbff;}
+
+/* ── Back content ── */
+.back-content{
+  position:relative;
+  z-index:2;
+  padding:14px 16px;
+  height:100%;
+  display:flex;
+  flex-direction:column;
+}
+
+.back-title{
+  font-family:'Orbitron',sans-serif;
+  font-size:14px;color:#e5f0ff;
+}
+
+.rule{
+  height:2px;border-radius:999px;
+  background:linear-gradient(90deg,var(--blue),var(--violet));
+  margin:8px 0 10px;
+}
+
+.back-meta{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:7px;
+}
+
+.back-meta div{
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:10px;
+  padding:6px 8px;
+}
+
+.qr-box{
+  margin-top:10px;
+  padding:10px;
+  border-radius:12px;
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.08);
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.qr-img{
+  width:64px;height:64px;
+  background:#fff;border-radius:8px;padding:5px;
+  flex-shrink:0;
+}
+
+.qr-text{font-size:10px;color:#cbd5e1;line-height:1.5;}
+
+.sig-row{
+  margin-top:auto;
+  display:flex;
+  justify-content:flex-end;
+}
+
+.sig-block{
+  text-align:center;
+  width:130px;
+}
+
+.sig-line{
+  height:30px;
+  border-bottom:1px solid rgba(255,255,255,.6);
+  margin-bottom:4px;
+}
+
+.sig-name{font-size:10px;font-weight:700;}
+.sig-sub{font-size:9px;color:#9fb3d9;}
+
+.back-footer{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  font-size:9px;
+  color:#9fb3d9;
+  margin-top:8px;
+}
+
+.notice{
+  font-size:9px;
+  line-height:1.5;
+  color:#cbd5e1;
+  margin-top:8px;
+}
+
+/* ── Logo bg watermark ── */
+.bg-logo{
+  position:absolute;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  opacity:.07;
+  pointer-events:none;
+  z-index:0;
+}
+.bg-logo img{width:180px;height:auto;}
+
+/* ── Print styles ── */
+@media print{
+  @page{ margin:10mm; }
+
+  body{
+    background:#fff !important;
+    display:block;
+    min-height:unset;
+  }
+
+  header, .hint, .print-btn, .scene { display:none !important; }
+
+  .print-area{
+    display:flex !important;
+    gap:16px;
+    align-items:flex-start;
+    padding:0;
+  }
+
+  .print-card{
+    width: 85.6mm;   /* CR80 standard */
+    height: 53.98mm;
+    border-radius:6px;
+    overflow:hidden;
+    border:1px solid #bbb;
+    break-inside:avoid;
+    page-break-inside:avoid;
+    position:relative;
+    background:#060b18;
+    flex-shrink:0;
+  }
+
+  .print-card .topline{height:3px;}
+  .print-card .glow, .print-card .holo, .print-card .card-chrome:before{display:none;}
+
+  .print-card .content,
+  .print-card .back-content{
+    padding:9px 11px;
+  }
+
+  .print-card .logo{ font-size:12px; }
+  .print-card .name{ font-size:14px; }
+  .print-card .role{ font-size:9px; }
+  .print-card .photo{ width:62px; height:74px; }
+  .print-card .meta, .print-card .back-meta{ gap:5px; }
+  .print-card .meta div, .print-card .back-meta div{ padding:4px 6px; border-radius:7px; }
+  .print-card .label{ font-size:7px; }
+  .print-card .value{ font-size:9px; }
+  .print-card .back-title{ font-size:11px; }
+  .print-card .qr-box{ margin-top:7px; padding:7px; gap:8px; }
+  .print-card .qr-img{ width:50px; height:50px; }
+  .print-card .sig-block{ width:100px; }
+  .print-card .notice{ font-size:7.5px; }
+  .print-card .back-footer{ font-size:7px; }
+  .print-card .watermark{ font-size:52px; }
+  .print-card .bg-logo img{ width:130px; }
+}
+
+/* Print area hidden on screen */
+.print-area{ display:none; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>QubiSafe Premium ID</h1>
+  <p>Click the card to flip between front and back.</p>
+  <button class="print-btn" onclick="window.print()">
+    <svg viewBox="0 0 24 24"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+    Print ID Card
+  </button>
+  <div class="hint">Click card to flip &nbsp;·&nbsp; Print shows front &amp; back side by side</div>
+</header>
+
+<!-- ═══════════════ INTERACTIVE FLIP CARD ═══════════════ -->
+<div class="scene" id="card" onclick="this.classList.toggle('flipped')" title="Click to flip">
+  <div class="flipper">
+
+    <!-- FRONT FACE -->
+    <div class="face front-face">
+      <div class="card-chrome">
+        <div class="topline"></div>
+        <div class="glow"></div>
+        <div class="holo"></div>
+        <div class="bg-logo">
+          <img src="https://qubisafe.com/website/Media/solid_blank.png" alt="">
+        </div>
+        <div class="watermark">QBS</div>
+
+        <div class="content">
+          <div class="brand">
+            <div>
+              <img class="logohead" src="https://qubisafe.com/website/Media/solid_color.png" alt="">
+              <span class="logo">QUBISAFE PRIVATE LIMITED</span>
+            </div>
+            <div class="badge">DIGITAL ID</div>
+          </div>
+
+          <div class="main">
+            <div class="photo">
+              <img src="https://i.pravatar.cc/300?img=12" alt="Employee">
+            </div>
+            <div>
+              <div class="name">AARAV<br>SHARMA</div>
+              <div class="role">Cybersecurity Research Engineer</div>
+              <div class="idline">ID &bull; QBS-RD-0147</div>
+            </div>
+          </div>
+
+          <div class="meta">
+            <div><div class="label">Department</div><div class="value">Quantum Security Lab</div></div>
+            <div><div class="label">Engagement</div><div class="value">3 Months</div></div>
+            <div><div class="label">Issued On</div><div class="value">06 Aug 2026</div></div>
+            <div><div class="label">Valid Till</div><div class="value">05 Aug 2028</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BACK FACE -->
+    <div class="face back-face">
+      <div class="card-chrome">
+        <div class="topline"></div>
+        <div class="glow"></div>
+        <div class="bg-logo">
+          <img src="https://qubisafe.com/website/Media/solid_blank.png" alt="">
+        </div>
+        <div class="watermark">QBS</div>
+
+        <div class="back-content">
+          <div class="back-title">AARAV SHARMA</div>
+          <div class="rule"></div>
+
+          <div class="back-meta">
+            <div><div class="label">Blood Group</div><div class="value">B+</div></div>
+            <div><div class="label">Emergency</div><div class="value">+91 98XXXXXX10</div></div>
+            <div><div class="label">Email</div><div class="value">name@qubisafe.com</div></div>
+            <div><div class="label">Address</div><div class="value">Employee Address</div></div>
+          </div>
+
+          <div class="qr-box">
+            <img class="qr-img" src="https://qubisafe.com/website/Media/solid_color.png" alt="QR Code">
+            <div class="qr-text">
+              <strong style="color:#e5f0ff;">QR Verification</strong><br>
+              Scan to verify this credential via QubiSafe verification system.
+            </div>
+          </div>
+
+          <div class="sig-row">
+            <div class="sig-block">
+              <div class="sig-line"></div>
+              <div class="sig-name">Managing Director</div>
+              <div class="sig-sub">Issuing Authority</div>
+            </div>
+          </div>
+
+          <p class="notice">
+            This credential is digitally verifiable. Unauthorized possession, duplication, or alteration is strictly prohibited.
+          </p>
+
+          <div class="back-footer">
+            <span>QubiSafe Private Limited</span>
+            <span>www.qubisafe.com</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /flipper -->
+</div><!-- /scene -->
+
+
+<!-- ═══════════════ PRINT-ONLY AREA (hidden on screen) ═══════════════ -->
+<div class="print-area">
+
+  <!-- PRINT FRONT -->
+  <div class="print-card">
+    <div class="topline"></div>
+    <div class="bg-logo"><img src="https://qubisafe.com/website/Media/solid_blank.png" alt=""></div>
+    <div class="watermark">QBS</div>
+    <div class="content">
+      <div class="brand">
+        <div>
+          <img class="logohead" src="https://qubisafe.com/website/Media/solid_color.png" alt="">
+          <span class="logo">QUBISAFE PRIVATE LIMITED</span>
+        </div>
+        <div class="badge">DIGITAL ID</div>
+      </div>
+      <div class="main">
+        <div class="photo"><img src="https://i.pravatar.cc/300?img=12" alt="Employee"></div>
+        <div>
+          <div class="name">AARAV<br>SHARMA</div>
+          <div class="role">Cybersecurity Research Engineer</div>
+          <div class="idline">ID &bull; QBS-RD-0147</div>
+        </div>
+      </div>
+      <div class="meta">
+        <div><div class="label">Department</div><div class="value">Quantum Security Lab</div></div>
+        <div><div class="label">Engagement</div><div class="value">3 Months</div></div>
+        <div><div class="label">Issued On</div><div class="value">06 Aug 2026</div></div>
+        <div><div class="label">Valid Till</div><div class="value">05 Aug 2028</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRINT BACK -->
+  <div class="print-card">
+    <div class="topline"></div>
+    <div class="bg-logo"><img src="https://qubisafe.com/website/Media/solid_blank.png" alt=""></div>
+    <div class="watermark">QBS</div>
+    <div class="back-content">
+      <div class="back-title">AARAV SHARMA</div>
+      <div class="rule"></div>
+      <div class="back-meta">
+        <div><div class="label">Blood Group</div><div class="value">B+</div></div>
+        <div><div class="label">Emergency</div><div class="value">+91 98XXXXXX10</div></div>
+        <div><div class="label">Email</div><div class="value">name@qubisafe.com</div></div>
+        <div><div class="label">Address</div><div class="value">Employee Address</div></div>
+      </div>
+      <div class="qr-box">
+        <img class="qr-img" src="https://qubisafe.com/website/Media/solid_color.png" alt="QR Code">
+        <div class="qr-text">
+          <strong style="color:#e5f0ff;">QR Verification</strong><br>
+          Scan to verify this credential.
+        </div>
+      </div>
+      <div class="sig-row">
+        <div class="sig-block">
+          <div class="sig-line"></div>
+          <div class="sig-name">Managing Director</div>
+          <div class="sig-sub">Issuing Authority</div>
+        </div>
+      </div>
+      <p class="notice">Unauthorized possession, duplication, or alteration is strictly prohibited.</p>
+      <div class="back-footer">
+        <span>QubiSafe Private Limited</span>
+        <span>www.qubisafe.com</span>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /print-area -->
+
+</body>
+</html>

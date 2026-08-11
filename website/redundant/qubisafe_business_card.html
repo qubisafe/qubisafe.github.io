@@ -1,0 +1,88 @@
+
+<style>
+  h2.sr-only { position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0); }
+  .scene { perspective: 1200px; width: 420px; height: 240px; margin: 0 auto; cursor: pointer; }
+  .card { width: 100%; height: 100%; position: relative; transform-style: preserve-3d; transition: transform 0.7s cubic-bezier(.4,0,.2,1); }
+  .card.flipped { transform: rotateY(180deg); }
+  .face { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; border-radius: 14px; overflow: hidden; }
+  .back-face { transform: rotateY(180deg); }
+
+  /* Front */
+  .front-face { background: #0a1628; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; }
+  .logo-bg-front { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 260px; height: 260px; opacity: 0.06; background-image: url('https://qubisafe.com/website/Media/solid_color-removebg-preview.png'); background-size: contain; background-repeat: no-repeat; background-position: center; }
+  .front-logo { width: 64px; height: 64px; object-fit: contain; position: relative; z-index: 2; }
+  .front-company { font-size: 18px; font-weight: 500; color: #ffffff; letter-spacing: 0.04em; text-align: center; position: relative; z-index: 2; }
+  .front-tagline { font-size: 10px; color: #7fa8d4; letter-spacing: 0.12em; text-align: center; position: relative; z-index: 2; text-transform: uppercase; }
+  .front-divider { width: 40px; height: 1px; background: #2a6bbf; position: relative; z-index: 2; }
+
+  /* Back */
+  .back-face { background: #f5f7fa; display: flex; flex-direction: column; justify-content: space-between; padding: 22px 26px 18px; }
+  .logo-bg-back { position: absolute; top: 50%; right: -20px; transform: translateY(-50%); width: 200px; height: 200px; opacity: 0.05; background-image: url('https://qubisafe.com/website/Media/solid_color-removebg-preview.png'); background-size: contain; background-repeat: no-repeat; background-position: center; }
+  .back-top { display: flex; align-items: flex-start; gap: 14px; position: relative; z-index: 2; }
+  .back-logo { width: 38px; height: 38px; object-fit: contain; flex-shrink: 0; }
+  .back-name-block { display: flex; flex-direction: column; gap: 2px; }
+  .back-name { font-size: 15px; font-weight: 500; color: #0a1628; }
+  .back-role { font-size: 10px; color: #2a6bbf; letter-spacing: 0.08em; text-transform: uppercase; }
+  .back-contact { display: flex; flex-direction: column; gap: 5px; position: relative; z-index: 2; }
+  .contact-row { display: flex; align-items: center; gap: 8px; font-size: 10.5px; color: #3a4a5c; }
+  .contact-icon { width: 14px; height: 14px; flex-shrink: 0; color: #2a6bbf; }
+  .back-footer { display: flex; justify-content: space-between; align-items: center; border-top: 0.5px solid #c8d4e0; padding-top: 10px; position: relative; z-index: 2; }
+  .back-footer-tag { font-size: 9px; color: #7fa8d4; letter-spacing: 0.1em; text-transform: uppercase; }
+  .back-website { font-size: 10px; color: #2a6bbf; font-weight: 500; }
+
+  .flip-hint { text-align: center; margin-top: 14px; font-size: 12px; color: var(--text-muted); }
+  .flip-btn { margin: 10px auto 0; display: block; font-size: 12px; padding: 6px 18px; }
+</style>
+
+<h2 class="sr-only">Qubisafe Private Limited business card — front shows branding, back shows contact details. Click to flip.</h2>
+
+<div style="padding: 2rem 0 1rem;">
+  <div class="scene" id="scene" onclick="document.getElementById('card').classList.toggle('flipped')">
+    <div class="card" id="card">
+
+      <!-- FRONT -->
+      <div class="face front-face">
+        <div class="logo-bg-front"></div>
+        <img class="front-logo" src="https://qubisafe.com/website/Media/solid_color-removebg-preview.png" alt="Qubisafe logo" onerror="this.style.display='none'">
+        <div class="front-company">Qubisafe Private Limited</div>
+        <div class="front-divider"></div>
+        <div class="front-tagline">Pioneering & Safeguarding the Future of Technology</div>
+      </div>
+
+      <!-- BACK -->
+      <div class="face back-face">
+        <div class="logo-bg-back"></div>
+
+        <div class="back-top">
+          <img class="back-logo" src="https://qubisafe.com/website/Media/solid_color-removebg-preview.png" alt="Qubisafe logo" onerror="this.style.display='none'">
+          <div class="back-name-block">
+            <div class="back-name">Sunita Choubey</div>
+            <div class="back-role">CEO & Co-Founder</div>
+          </div>
+        </div>
+
+        <div class="back-contact">
+          <div class="contact-row">
+            <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            contact@qubisafe.com
+          </div>
+          <div class="contact-row">
+            <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            qubisafe.com
+          </div>
+          <div class="contact-row">
+            <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Jabalpur, Madhya Pradesh — 482003, India
+          </div>
+        </div>
+
+        <div class="back-footer">
+          <span class="back-footer-tag">Cybersecurity · AI/ML · Quantum · Cloud</span>
+          <span class="back-website">qubisafe.com</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <p class="flip-hint">Click the card to flip</p>
+</div>

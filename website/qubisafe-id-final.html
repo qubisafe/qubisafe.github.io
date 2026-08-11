@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>QubiSafe - Employee Name</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#060b18;--bg2:#0b1020;
+  --blue:#00c6ff;--violet:#7b2ff7;
+  --text:#e5f0ff;--muted:#9fb3d9;
+  --border:rgba(255,255,255,.14);
+  --card-w:440px;--card-h:295px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  font-family:'Montserrat',sans-serif;
+  background:
+    radial-gradient(circle at 20% 20%,rgba(0,198,255,.10),transparent 25%),
+    radial-gradient(circle at 80% 30%,rgba(123,47,247,.12),transparent 30%),
+    linear-gradient(135deg,var(--bg),#091224,var(--bg2));
+  color:var(--text);min-height:100vh;
+  display:flex;flex-direction:column;align-items:center;
+}
+header{text-align:center;padding:32px 20px 10px;width:100%;}
+header h1{
+  font-family:'Orbitron',sans-serif;font-size:26px;letter-spacing:1px;
+  background:linear-gradient(90deg,var(--blue),#9d7bff);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+}
+header p{color:var(--muted);font-size:12px;margin-top:6px;}
+.print-btn{
+  display:inline-flex;align-items:center;gap:8px;
+  margin-top:14px;padding:9px 22px;border-radius:999px;
+  border:1px solid rgba(0,198,255,.4);background:rgba(0,198,255,.10);
+  color:#bfe8ff;font-family:'Montserrat',sans-serif;
+  font-size:12px;font-weight:700;letter-spacing:.6px;cursor:pointer;
+  transition:background .2s,box-shadow .2s;
+}
+.print-btn:hover{background:rgba(0,198,255,.20);box-shadow:0 0 18px rgba(0,198,255,.25);}
+.print-btn svg{width:15px;height:15px;stroke:#bfe8ff;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+.hint{margin:8px 0 2px;font-size:10px;color:var(--muted);letter-spacing:.4px;}
+
+/* ── flip scene ── */
+.scene{
+  width:var(--card-w);height:var(--card-h);
+  perspective:1200px;cursor:pointer;margin:18px 0 36px;
+}
+.flipper{
+  width:100%;height:100%;position:relative;
+  transform-style:preserve-3d;
+  transition:transform .7s cubic-bezier(.55,.05,.22,.99);
+}
+.scene.flipped .flipper{transform:rotateY(180deg);}
+.face{
+  position:absolute;inset:0;
+  backface-visibility:hidden;-webkit-backface-visibility:hidden;
+  border-radius:20px;overflow:hidden;
+}
+.face.back-face{transform:rotateY(180deg);}
+
+/* ── chrome ── */
+.card-chrome{
+  width:100%;height:100%;position:relative;
+  background:linear-gradient(135deg,rgba(255,255,255,.06),rgba(255,255,255,.02));
+  border:1px solid var(--border);
+  box-shadow:0 0 0 1px rgba(255,255,255,.02),0 20px 50px rgba(0,0,0,.45),0 0 40px rgba(0,198,255,.08);
+  backdrop-filter:blur(12px);border-radius:20px;overflow:hidden;
+}
+.card-chrome::before{
+  content:'';position:absolute;inset:0;border-radius:20px;
+  background:
+    linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);
+  background-size:22px 22px;pointer-events:none;
+}
+.glow{
+  position:absolute;inset:auto -20% -30% auto;
+  width:180px;height:180px;
+  background:radial-gradient(circle,rgba(123,47,247,.35),transparent 70%);
+  filter:blur(8px);pointer-events:none;
+}
+.topline{position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--blue),var(--violet));z-index:3;}
+.holo{position:absolute;inset:0;background:linear-gradient(120deg,transparent 20%,rgba(255,255,255,.12) 35%,transparent 50%);pointer-events:none;z-index:1;}
+.watermark{
+  position:absolute;right:-10px;bottom:0;
+  font-size:70px;font-weight:800;opacity:.05;
+  transform:rotate(-18deg);font-family:'Orbitron',sans-serif;
+  pointer-events:none;z-index:0;
+}
+.bg-logo{
+  position:absolute;inset:0;display:flex;align-items:center;
+  justify-content:center;opacity:.07;pointer-events:none;z-index:0;
+}
+.bg-logo img{width:180px;height:auto;}
+
+/* ── shared labels ── */
+.lbl{font-size:9px;text-transform:uppercase;letter-spacing:.7px;color:#9fb3d9;}
+.val{margin-top:2px;font-size:11px;font-weight:700;color:#f8fbff;}
+
+/* ── front ── */
+.content{
+  position:relative;z-index:2;
+  padding:13px 15px 11px;
+  height:100%;display:flex;flex-direction:column;
+}
+.brand{display:flex;justify-content:space-between;align-items:flex-start;}
+.logo{font-family:'Orbitron',sans-serif;font-size:14.5px;letter-spacing:.4px;line-height:1.2;}
+.logohead{width:17px;height:17px;border-radius:9px;vertical-align:middle;margin-right:4px;}
+.badge{
+  border:1px solid rgba(56,189,248,.35);background:rgba(56,189,248,.10);
+  color:#bfe8ff;padding:4px 9px;border-radius:999px;
+  font-size:9px;font-weight:700;letter-spacing:.8px;white-space:nowrap;
+}
+.main{display:flex;gap:13px;margin-top:10px;}
+.photo{
+  width:80px;height:96px;border-radius:13px;overflow:hidden;flex-shrink:0;
+  border:2px solid rgba(255,255,255,.25);box-shadow:0 0 18px rgba(0,198,255,.18);
+}
+.photo img{width:100%;height:100%;object-fit:cover;}
+.name{font-size:17px;font-weight:800;line-height:1.05;}
+.role{margin-top:4px;color:#b7d6ff;font-size:10.5px;font-weight:600;}
+.idline{
+  margin-top:7px;display:inline-block;padding:4px 9px;border-radius:8px;
+  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);
+  font-size:9.5px;color:#dbeafe;
+}
+.meta{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:9px;}
+.meta-cell{
+  background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);
+  border-radius:9px;padding:5px 8px;
+}
+
+/* front footer bar */
+.front-footer{
+  margin-top:auto;padding-top:9px;
+  display:flex;justify-content:space-between;align-items:center;
+  border-top:1px solid rgba(255,255,255,.07);
+}
+.front-footer a, .front-footer span{
+  font-size:9px;color:#9fb3d9;text-decoration:none;
+  display:flex;align-items:center;gap:4px;
+  transition:color .2s;
+}
+.front-footer a:hover{color:#bfe8ff;}
+.front-footer svg{width:10px;height:10px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;}
+
+/* ── back ── */
+.back-content{
+  position:relative;z-index:2;
+  padding:13px 15px 11px;
+  height:100%;display:flex;flex-direction:column;
+}
+.back-title{font-family:'Orbitron',sans-serif;font-size:13px;color:#e5f0ff;}
+.rule{height:2px;border-radius:999px;background:linear-gradient(90deg,var(--blue),var(--violet));margin:7px 0 9px;}
+.back-meta{display:grid;grid-template-columns:1fr 1fr;gap:6px;}
+.back-meta-cell{
+  background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);
+  border-radius:9px;padding:5px 8px;
+}
+.qr-box{
+  margin-top:9px;padding:9px;border-radius:11px;
+  background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);
+  display:flex;align-items:center;gap:11px;
+}
+.qr-img{width:60px;height:60px;background:#fff;border-radius:7px;padding:4px;flex-shrink:0;}
+.qr-text{font-size:9.5px;color:#cbd5e1;line-height:1.5;}
+
+/* sig + back footer in one row */
+.back-bottom{
+  margin-top:auto;padding-top:9px;
+  display:flex;justify-content:space-between;align-items:flex-end;
+  border-top:1px solid rgba(255,255,255,.07);
+}
+.back-links{display:flex;flex-direction:column;gap:5px;justify-content:flex-end;}
+.back-links a{
+  font-size:9px;color:#9fb3d9;text-decoration:none;
+  display:flex;align-items:center;gap:4px;transition:color .2s;
+}
+.back-links a:hover{color:#bfe8ff;}
+.back-links svg{width:10px;height:10px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;}
+.sig-block{text-align:center;width:120px;}
+.sig-line{height:28px;border-bottom:1px solid rgba(255,255,255,.5);margin-bottom:4px;}
+.sig-name{font-size:9.5px;font-weight:700;}
+.sig-sub{font-size:8.5px;color:#9fb3d9;}
+
+/* ═══ PRINT ═══ */
+@media print{
+  @page{margin:8mm;}
+  body{background:#fff !important;display:block;min-height:unset;}
+  header,.hint,.print-btn,.scene{display:none !important;}
+  .print-area{display:flex !important;gap:14px;align-items:flex-start;padding:0;}
+  .print-card{
+    width:85.6mm;height:53.98mm;border-radius:6px;overflow:hidden;
+    border:1px solid #bbb;position:relative;background:#060b18;flex-shrink:0;
+    break-inside:avoid;page-break-inside:avoid;
+  }
+  .print-card .topline{height:3px;}
+  .print-card .glow,.print-card .holo,.print-card .card-chrome::before{display:none;}
+  .print-card .content,.print-card .back-content{padding:7px 10px 8px;}
+  .print-card .logo{font-size:11px;}
+  .print-card .name{font-size:13px;}
+  .print-card .role{font-size:8.5px;}
+  .print-card .photo{width:58px;height:70px;}
+  .print-card .meta,.print-card .back-meta{gap:4px;}
+  .print-card .meta-cell,.print-card .back-meta-cell{padding:3px 6px;border-radius:6px;}
+  .print-card .lbl{font-size:7px;}
+  .print-card .val{font-size:8.5px;}
+  .print-card .back-title{font-size:10px;}
+  .print-card .qr-box{margin-top:6px;padding:6px;gap:7px;}
+  .print-card .qr-img{width:44px;height:44px;}
+  .print-card .qr-text{font-size:8px;}
+  .print-card .sig-block{width:90px;}
+  .print-card .sig-name{font-size:8px;}
+  .print-card .sig-sub{font-size:7px;}
+  .print-card .back-links a,.print-card .front-footer a,.print-card .front-footer span{font-size:7.5px;}
+  .print-card .watermark{font-size:48px;}
+  .print-card .bg-logo img{width:120px;}
+  .print-card .idline{font-size:8px;padding:3px 7px;}
+  .print-card .main{gap:10px;margin-top:7px;}
+}
+.print-area{display:none;}
+</style>
+</head>
+<body>
+
+<header>
+  <!-- <h1>QubiSafe Premium ID</h1> -->
+  <p>Click the card to flip · Print shows front &amp; back side by side</p>
+  <button class="print-btn" onclick="window.print()">
+    <svg viewBox="0 0 24 24"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+    Print ID Card
+  </button>
+</header>
+
+<!-- ═══ FLIP CARD ═══ -->
+<div class="scene" id="card" onclick="this.classList.toggle('flipped')" title="Click to flip">
+  <div class="flipper">
+
+    <!-- FRONT -->
+    <div class="face front-face">
+      <div class="card-chrome">
+        <div class="topline"></div><div class="glow"></div><div class="holo"></div>
+        <div class="bg-logo"><img src="https://qubisafe.com/website/Media/solid_blank.png" alt=""></div>
+        <div class="watermark">QubiSafe</div>
+        <div class="content">
+          <div class="brand">
+            <div>
+              <img class="logohead" src="https://qubisafe.com/website/Media/solid_color.png" alt="">
+              <span class="logo">QUBISAFE PRIVATE LIMITED</span>
+            </div>
+            <div class="badge">DIGITAL ID</div>
+          </div>
+          <div class="main">
+            <div class="photo"><img src="https://i.pravatar.cc/300?img=12" alt="Employee"></div>
+            <div>
+              <div class="name">AARAV<br>SHARMA</div>
+              <div class="role">Cybersecurity Research Engineer</div>
+              <div class="idline">ID &bull; QBS-RD-0147</div>
+            </div>
+          </div>
+          <div class="meta">
+            <div class="meta-cell"><div class="lbl">Department</div><div class="val">Quantum Security Lab</div></div>
+            <div class="meta-cell"><div class="lbl">Engagement</div><div class="val">3 Months</div></div>
+            <div class="meta-cell"><div class="lbl">Issued On</div><div class="val">06 Aug 2026</div></div>
+            <div class="meta-cell"><div class="lbl">Valid Till</div><div class="val">05 Aug 2028</div></div>
+          </div>
+          <!-- FRONT FOOTER -->
+          <div class="front-footer">
+            <a href="https://qubisafe.com" target="_blank">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+              qubisafe.com
+            </a>
+            <a href="mailto:contact@qubisafe.com">
+              <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              contact@qubisafe.com
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BACK -->
+    <div class="face back-face">
+      <div class="card-chrome">
+        <div class="topline"></div><div class="glow"></div>
+        <div class="bg-logo"><img src="https://qubisafe.com/website/Media/solid_blank.png" alt=""></div>
+        <div class="watermark">QubiSafe</div>
+        <div class="back-content">
+          <div class="back-title">AARAV SHARMA</div>
+          <div class="rule"></div>
+          <div class="back-meta">
+            <div class="back-meta-cell"><div class="lbl">Blood Group</div><div class="val">B+</div></div>
+            <div class="back-meta-cell"><div class="lbl">Emergency</div><div class="val">+91 98XXXXXX10</div></div>
+            <div class="back-meta-cell"><div class="lbl">Email</div><div class="val">name@qubisafe.com</div></div>
+            <div class="back-meta-cell"><div class="lbl">Address</div><div class="val">Employee Address</div></div>
+          </div>
+          <div class="qr-box">
+            <img class="qr-img" src="https://qubisafe.com/website/Media/solid_color.png" alt="QR Code">
+            <div class="qr-text">
+              <strong style="color:#e5f0ff;">QR Verification</strong><br>
+              Scan to verify this credential via the QubiSafe verification system.
+            </div>
+          </div>
+          <!-- BACK BOTTOM: links + signature -->
+          <div class="back-bottom">
+            <div class="back-links">
+              <a href="https://linkedin.com/company/qubisafe" target="_blank">
+                <!-- LinkedIn icon -->
+                <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+                linkedin.com/company/qubisafe
+              </a>
+              <a href="https://github.com/qubisafe" target="_blank">
+                <!-- GitHub icon -->
+                <svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                github.com/qubisafe
+              </a>
+            </div>
+            <div class="sig-block">
+              <div class="sig-line"></div>
+              <div class="sig-name">Managing Director</div>
+              <div class="sig-sub">Issuing Authority</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══ PRINT AREA ═══ -->
+<div class="print-area">
+  <!-- PRINT FRONT -->
+  <div class="print-card">
+    <div class="topline"></div>
+    <div class="bg-logo"><img src="https://qubisafe.com/website/Media/solid_blank.png" alt=""></div>
+    <div class="watermark">QBS</div>
+    <div class="content">
+      <div class="brand">
+        <div>
+          <img class="logohead" src="https://qubisafe.com/website/Media/solid_color.png" alt="">
+          <span class="logo">QUBISAFE PRIVATE LIMITED</span>
+        </div>
+        <div class="badge">DIGITAL ID</div>
+      </div>
+      <div class="main">
+        <div class="photo"><img src="https://i.pravatar.cc/300?img=12" alt="Employee"></div>
+        <div>
+          <div class="name">AARAV<br>SHARMA</div>
+          <div class="role">Cybersecurity Research Engineer</div>
+          <div class="idline">ID &bull; QBS-RD-0147</div>
+        </div>
+      </div>
+      <div class="meta">
+        <div class="meta-cell"><div class="lbl">Department</div><div class="val">Quantum Security Lab</div></div>
+        <div class="meta-cell"><div class="lbl">Engagement</div><div class="val">3 Months</div></div>
+        <div class="meta-cell"><div class="lbl">Issued On</div><div class="val">06 Aug 2026</div></div>
+        <div class="meta-cell"><div class="lbl">Valid Till</div><div class="val">05 Aug 2028</div></div>
+      </div>
+      <div class="front-footer">
+        <span>
+          <svg viewBox="0 0 24 24" style="width:10px;height:10px;fill:none;stroke:#9fb3d9;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          qubisafe.com
+        </span>
+        <span>
+          <svg viewBox="0 0 24 24" style="width:10px;height:10px;fill:none;stroke:#9fb3d9;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          contact@qubisafe.com
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRINT BACK -->
+  <div class="print-card">
+    <div class="topline"></div>
+    <div class="bg-logo"><img src="https://qubisafe.com/website/Media/solid_blank.png" alt=""></div>
+    <div class="watermark">QBS</div>
+    <div class="back-content">
+      <div class="back-title">AARAV SHARMA</div>
+      <div class="rule"></div>
+      <div class="back-meta">
+        <div class="back-meta-cell"><div class="lbl">Blood Group</div><div class="val">B+</div></div>
+        <div class="back-meta-cell"><div class="lbl">Emergency</div><div class="val">+91 98XXXXXX10</div></div>
+        <div class="back-meta-cell"><div class="lbl">Email</div><div class="val">name@qubisafe.com</div></div>
+        <div class="back-meta-cell"><div class="lbl">Address</div><div class="val">Employee Address</div></div>
+      </div>
+      <div class="qr-box">
+        <img class="qr-img" src="https://qubisafe.com/website/Media/solid_color.png" alt="QR Code">
+        <div class="qr-text">
+          <strong style="color:#e5f0ff;">QR Verification</strong><br>
+          Scan to verify this credential.
+        </div>
+      </div>
+      <div class="back-bottom">
+        <div class="back-links">
+          <a href="https://linkedin.com/company/qubisafe">
+            <svg viewBox="0 0 24 24" style="width:10px;height:10px;fill:none;stroke:#9fb3d9;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            linkedin.com/company/qubisafe
+          </a>
+          <a href="https://github.com/qubisafe">
+            <svg viewBox="0 0 24 24" style="width:10px;height:10px;fill:none;stroke:#9fb3d9;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+            github.com/qubisafe
+          </a>
+        </div>
+        <div class="sig-block">
+          <div class="sig-line"></div>
+          <div class="sig-name">Managing Director</div>
+          <div class="sig-sub">Issuing Authority</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
