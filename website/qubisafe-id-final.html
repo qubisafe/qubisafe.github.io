@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>QubiSafe - Employee Name</title>
+<title>QubiSafe-Employee Name </title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -189,38 +189,140 @@ header p{color:var(--muted);font-size:12px;margin-top:6px;}
 
 /* ═══ PRINT ═══ */
 @media print{
-  @page{margin:8mm;}
-  body{background:#fff !important;display:block;min-height:unset;}
-  header,.hint,.print-btn,.scene{display:none !important;}
-  .print-area{display:flex !important;gap:14px;align-items:flex-start;padding:0;}
-  .print-card{
-    width:85.6mm;height:53.98mm;border-radius:6px;overflow:hidden;
-    border:1px solid #bbb;position:relative;background:#060b18;flex-shrink:0;
-    break-inside:avoid;page-break-inside:avoid;
+  @page{
+    margin:6mm;
+    /* force color printing in supported browsers */
+    color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
   }
-  .print-card .topline{height:3px;}
-  .print-card .glow,.print-card .holo,.print-card .card-chrome::before{display:none;}
-  .print-card .content,.print-card .back-content{padding:7px 10px 8px;}
-  .print-card .logo{font-size:11px;}
-  .print-card .name{font-size:13px;}
-  .print-card .role{font-size:8.5px;}
-  .print-card .photo{width:58px;height:70px;}
-  .print-card .meta,.print-card .back-meta{gap:4px;}
-  .print-card .meta-cell,.print-card .back-meta-cell{padding:3px 6px;border-radius:6px;}
-  .print-card .lbl{font-size:7px;}
-  .print-card .val{font-size:8.5px;}
-  .print-card .back-title{font-size:10px;}
-  .print-card .qr-box{margin-top:6px;padding:6px;gap:7px;}
-  .print-card .qr-img{width:44px;height:44px;}
-  .print-card .qr-text{font-size:8px;}
-  .print-card .sig-block{width:90px;}
-  .print-card .sig-name{font-size:8px;}
-  .print-card .sig-sub{font-size:7px;}
-  .print-card .back-links a,.print-card .front-footer a,.print-card .front-footer span{font-size:7.5px;}
-  .print-card .watermark{font-size:48px;}
-  .print-card .bg-logo img{width:120px;}
-  .print-card .idline{font-size:8px;padding:3px 7px;}
-  .print-card .main{gap:10px;margin-top:7px;}
+  /* Force colour on the whole document */
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
+  }
+  body{
+    background:#ffffff !important;
+    display:block;min-height:unset;
+    -webkit-print-color-adjust:exact !important;
+    print-color-adjust:exact !important;
+  }
+  header,.hint,.print-btn,.scene{display:none !important;}
+  .print-area{
+    display:flex !important;
+    gap:10mm;
+    align-items:flex-start;
+    padding:0;
+  }
+
+  /* CR80 standard card: 85.6 × 53.98 mm */
+  .print-card{
+    width:85.6mm;
+    height:53.98mm;
+    border-radius:5px;
+    overflow:hidden;
+    border:1px solid rgba(255,255,255,.2);
+    position:relative;
+    /* rich dark background — must use solid colour for reliable print */
+    background:#060b18 !important;
+    flex-shrink:0;
+    break-inside:avoid;
+    page-break-inside:avoid;
+  }
+
+  /* Restore gradient topline in print */
+  .print-card .topline{
+    height:3px;
+    background:linear-gradient(90deg,#00c6ff,#7b2ff7) !important;
+    -webkit-print-color-adjust:exact !important;
+    print-color-adjust:exact !important;
+  }
+
+  /* Remove heavy effects that don't print well */
+  .print-card .glow,
+  .print-card .holo,
+  .print-card .card-chrome::before{ display:none; }
+
+  /* Tighten padding so nothing overflows */
+  .print-card .content,
+  .print-card .back-content{ padding:6px 9px 6px; }
+
+  /* Typography scale-down */
+  .print-card .logo{ font-size:10.5px; }
+  .print-card .logohead{ width:14px;height:14px; }
+  .print-card .badge{ font-size:7.5px;padding:3px 7px; }
+  .print-card .name{ font-size:12px; }
+  .print-card .role{ font-size:8px;margin-top:3px; }
+  .print-card .idline{ font-size:7.5px;padding:2px 6px;margin-top:5px; }
+  .print-card .main{ gap:9px;margin-top:7px; }
+  .print-card .photo{ width:55px;height:66px;border-radius:10px; }
+
+  /* Meta grid */
+  .print-card .meta,
+  .print-card .back-meta{ gap:4px;margin-top:7px; }
+  .print-card .meta-cell,
+  .print-card .back-meta-cell{ padding:3px 6px;border-radius:6px; }
+  .print-card .lbl{ font-size:6.5px; }
+  .print-card .val{ font-size:8px; }
+
+  /* Back card specifics */
+  .print-card .back-title{ font-size:10px; }
+  .print-card .rule{ margin:5px 0 7px; }
+  .print-card .qr-box{ margin-top:5px;padding:5px 6px;gap:7px;border-radius:8px; }
+  .print-card .qr-img{ width:40px;height:40px;border-radius:5px; }
+  .print-card .qr-text{ font-size:7.5px;line-height:1.4; }
+
+  /* Bottom row */
+  .print-card .back-bottom,
+  .print-card .front-footer{ padding-top:5px;margin-top:auto; }
+  .print-card .sig-block{ width:80px; }
+  .print-card .sig-line{ height:22px; }
+  .print-card .sig-name{ font-size:7.5px; }
+  .print-card .sig-sub{ font-size:6.5px; }
+  .print-card .back-links{ gap:4px; }
+  .print-card .back-links a,
+  .print-card .front-footer a,
+  .print-card .front-footer span{ font-size:7px; }
+  .print-card .back-links svg,
+  .print-card .front-footer svg{ width:8px;height:8px; }
+
+  /* Watermark & bg logo */
+  .print-card .watermark{ font-size:44px; }
+  .print-card .bg-logo img{ width:110px; }
+
+  /* Ensure text colours survive print */
+  .print-card .name,
+  .print-card .back-title{ color:#e5f0ff !important; }
+  .print-card .lbl{ color:#9fb3d9 !important; }
+  .print-card .val{ color:#f8fbff !important; }
+  .print-card .role{ color:#b7d6ff !important; }
+  .print-card .front-footer a,
+  .print-card .front-footer span,
+  .print-card .back-links a{ color:#9fb3d9 !important; }
+  .print-card .sig-name{ color:#e5f0ff !important; }
+  .print-card .sig-sub{ color:#9fb3d9 !important; }
+  .print-card .qr-text{ color:#cbd5e1 !important; }
+  .print-card .idline{ color:#dbeafe !important; }
+  .print-card .badge{ color:#bfe8ff !important; }
+  .print-card .meta-cell,
+  .print-card .back-meta-cell{
+    background:rgba(255,255,255,.07) !important;
+    border:1px solid rgba(255,255,255,.12) !important;
+  }
+  .print-card .qr-box{
+    background:rgba(255,255,255,.07) !important;
+    border:1px solid rgba(255,255,255,.12) !important;
+  }
+  .print-card .front-footer{
+    border-top:1px solid rgba(255,255,255,.1) !important;
+  }
+  .print-card .back-bottom{
+    border-top:1px solid rgba(255,255,255,.1) !important;
+  }
+  .print-card .sig-line{
+    border-bottom:1px solid rgba(255,255,255,.5) !important;
+  }
 }
 .print-area{display:none;}
 </style>
@@ -338,7 +440,7 @@ header p{color:var(--muted);font-size:12px;margin-top:6px;}
   <div class="print-card">
     <div class="topline"></div>
     <div class="bg-logo"><img src="https://qubisafe.com/website/Media/solid_blank.png" alt=""></div>
-    <div class="watermark">QBS</div>
+    <div class="watermark">QubiSafe</div>
     <div class="content">
       <div class="brand">
         <div>
@@ -378,7 +480,7 @@ header p{color:var(--muted);font-size:12px;margin-top:6px;}
   <div class="print-card">
     <div class="topline"></div>
     <div class="bg-logo"><img src="https://qubisafe.com/website/Media/solid_blank.png" alt=""></div>
-    <div class="watermark">QBS</div>
+    <div class="watermark">QubiSafe</div>
     <div class="back-content">
       <div class="back-title">AARAV SHARMA</div>
       <div class="rule"></div>
