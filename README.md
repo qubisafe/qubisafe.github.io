@@ -1,8 +1,8 @@
 <div align="center">
 
-<img src="https://qubisafe.com/website/Media/solid_color-removebg-preview.png" alt="Qubisafe Logo" width="180"/>
+<img src="https://qubisafe.com/website/Media/solid_color-removebg-preview.png" alt="QubiSafe Logo" width="180"/>
 
-# Qubisafe Private Limited
+# QubiSafe Private Limited
 
 ### Pioneering & Safeguarding the Future of Technology
 
@@ -20,7 +20,7 @@
 
 ## 🏢 About Us
 
-**Qubisafe Private Limited** is an emerging technology company incorporated in April 2025, headquartered in Jabalpur, Madhya Pradesh, India. We emerged from a simple yet powerful belief: **Technology should empower, protect, and inspire.**
+**QubiSafe Private Limited** is an emerging technology company incorporated in April 2025, headquartered in Jabalpur, Madhya Pradesh, India. We emerged from a simple yet powerful belief: **Technology should empower, protect, and inspire.**
 
 We specialize in delivering comprehensive technology solutions that bridge the gap between cutting-edge innovation and real-world impact — spanning cybersecurity, AI/ML, cloud computing, quantum computing, blockchain, and industrial IoT.
 
@@ -123,7 +123,7 @@ Immersive reality solutions for gaming, training, and interactive experiences.
 
 <div align="center">
 
-© 2025 Qubisafe Private Limited. All rights reserved.
+© 2025 QubiSafe Private Limited. All rights reserved.
 
 *Pioneering & Safeguarding the Future of Technology.*
 
